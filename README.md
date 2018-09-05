@@ -85,5 +85,4 @@ npm install XXXX-loader -D
 npm install sass-loader -D
 npm install node-sass   -D
 ```
-
 2.
