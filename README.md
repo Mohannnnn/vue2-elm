@@ -40,6 +40,10 @@ npm run build --report
  |      dev.env.js                  #开发配置部分    
  |      index.js                    #公用配置部分
  |      prod.env.js                 #生产配置部分
+ |-config                           #工具函数
+ |      utils.js                    #获取经纬度函数（H5的Api）
+ |      
+ |-plugins                          #第三方插件、js
  |-dist                             #build打包后生成的文件
  |      static
  |              css
@@ -85,4 +89,4 @@ npm install XXXX-loader -D
 npm install sass-loader -D
 npm install node-sass   -D
 ```
-2.
+2.定位获取经纬度服务，我采用的是高德地图的API。
