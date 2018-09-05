@@ -69,7 +69,7 @@ npm run build --report
 ```
 ## 功能完成情况
 
--[x] 
+- [x] home
 
 ## 后端服务
 
@@ -77,8 +77,7 @@ npm run build --report
 
 ## 采坑日记
 
-1.由于使用的是官方的脚手架，官方使用的是css-loader，如果你想使用scss、sass、less语法等，则需要安装相应的loader。
-此处我用的是scss语法
+1.由于使用的是官方的脚手架，官方使用的是css-loader，如果你想使用scss、sass、less语法等，则需要安装相应的loader。此处我用的是scss语法。
 
 ``` bash
 npm install XXXX-loader -D
