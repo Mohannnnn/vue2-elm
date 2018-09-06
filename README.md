@@ -94,8 +94,8 @@ npm install node-sass   -D
 ## 开发相关说明以及官方接口
 
 > 有些接口也是使用的官方的接口。由于新版Chrome（blink内核）和IOS10不支持不安全域的定位请求，而本次定位在开发状况下只能在非blink内核的浏览器下调试，定位才能成功。
- 1、IE浏览器内核：Trident内核，也是俗称的IE内核； 
- 2、Chrome浏览器内核：统称为Chromium内核或Chrome内核，以前是Webkit内核，现在是Blink内核； 
+1、IE浏览器内核：Trident内核，也是俗称的IE内核； 
+2、Chrome浏览器内核：统称为Chromium内核或Chrome内核，以前是Webkit内核，现在是Blink内核； 
  3、Firefox浏览器内核：Gecko内核，俗称Firefox内核；  
  4、Safari浏览器内核：Webkit内核； 
  5、Opera浏览器内核：最初是自己的Presto内核，后来是Webkit，现在是Blink内核； 
