@@ -89,4 +89,4 @@ npm install XXXX-loader -D
 npm install sass-loader -D
 npm install node-sass   -D
 ```
-2.定位获取经纬度服务，我采用的是高德地图的API。
+2.定位获取经纬度服务，我采用的是高德地图的API [相关文档](https://lbs.amap.com/api/javascript-api/example/location/browser-location)。

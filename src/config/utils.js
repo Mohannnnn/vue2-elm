@@ -1,51 +1,49 @@
-/*
+/**
 * 获取经纬度
 */
-export const getItude = () => {
-    
-    const options = {
-        enableHighAccuracy: true,
-        maximumAge:1000
+export const getItude =  async () => {
+    let reMsg = {
+        longitude : 0 , //经度
+        latitude : 0 ,  //纬度
+        status : 0,
+        address : '',
+        msg : ''
     }
-    if(navigator.geolocation){
-        //浏览器支持geolocation
-        navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
-    }else{
-        //浏览器不支持geolocation
-        alert('您的浏览器不支持地理位置定位');
-    }
-    //成功时
-    function onSuccess(position){
-        //返回用户位置
-        //经度
-        var longitude =position.coords.longitude;
-        //纬度
-        var latitude = position.coords.latitude;
-    
-        //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
-        var map = new BMap.Map("allmap");
-        var point = new BMap.Point(longitude,latitude);
-        var gc = new BMap.Geocoder();
-        gc.getLocation(point, function(rs){
-            var addComp = rs.addressComponents;
-            console.log(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+    if(!window.AMap) require('../plugins/aMap.js');
+    return await new Promise(resolve => {
+        let map, geolocation;
+        //加载地图，调用浏览器定位服务
+        map = new AMap.Map('', {
+            resizeEnable: true
         });
-    }
-    //失败时
-    function onError(error){
-        switch(error.code){
-            case 1:
-                alert("位置服务被拒绝");
-                break;
-            case 2:
-                alert("暂时获取不到位置信息");
-                break;
-            case 3:
-                alert("获取信息超时");
-                break;
-            case 4:
-                alert("未知错误");
-                break;
+        map.plugin('AMap.Geolocation',  async function() {
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                buttonOffset: new AMap.Pixel(10, 10),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                buttonPosition:'RB'
+            });
+            map.addControl(geolocation);
+            await geolocation.getCurrentPosition();
+            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        });
+        //解析定位结果
+        function onComplete(data) {
+            console.log(data)
+            reMsg.longitude = data.position.getLng();
+            reMsg.latitude = data.position.getLat();
+            reMsg.msg = data.message;
+            reMsg.status = 1;
+            reMsg.address = data.formattedAddress;
+            resolve(reMsg)
         }
-    }
+        //解析定位错误信息
+        function onError(data) {
+            reMsg.msg = data.message;
+            resolve(reMsg)
+        }
+    })
 }
+

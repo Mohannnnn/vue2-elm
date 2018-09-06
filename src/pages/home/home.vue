@@ -6,12 +6,30 @@
 </template>
 
 <script>
+import Location from '../location/location'
+import {getItude} from '../../config/utils'
 export default {
   name: 'index',
   data () {
     return {
       msg: 'Mohan'
     }
+  },
+  components : {
+    Location
+  },
+  computed: {},
+  watch: {},
+  methods: {
+
+  },
+  mounted() {
+    getItude().then(res => {
+      
+    });
+  },
+  created() {
+
   }
 }
 </script>
