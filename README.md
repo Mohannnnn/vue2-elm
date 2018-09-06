@@ -108,7 +108,8 @@ npm install node-sass   -D
 * 7、搜狗、遨游、QQ浏览器内核：Trident（兼容模式）+Webkit（高速模式）；
 * 8、百度浏览器、世界之窗内核：IE内核； 
 * 9、2345浏览器内核：以前是IE内核，现在也是IE+Chrome双内核；
-* 注：windows版QQ浏览器9代版本是webkit加Trident内核，10代是用的Chromium。Mac版是基于Chromium的。建议使用Firefox浏览器。
+
+注：windows版QQ浏览器9代版本是webkit加Trident内核，10代是用的Chromium。Mac版是基于Chromium的。建议使用Firefox浏览器。
 
 #### 具体如下：
 
