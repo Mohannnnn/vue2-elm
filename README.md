@@ -6,7 +6,7 @@
 
 ## 技术栈
 
-`webpack3` + `Vue2` + `Vuex` + `vue-router` + `ftech` + `ES6/7` + `flex`
+`webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex`
 
 ## 开始步骤
 
@@ -40,7 +40,10 @@ npm run build --report
  |      index.js                    #公用配置部分
  |      prod.env.js                 #生产配置部分
  |-config                           #工具函数
- |      utils.js                    #获取经纬度函数（H5的Api）
+ |      utils.js                    #获取经纬度函数（的Api）
+ |      getData.js                  #请求接口
+ |      requestUrl.js               #请求接口的地址，统一管理
+ |      fetch.js                    #封装请求的fetch方法
  |-router                           #路由文件
  |      index.js                    #路由
  |-store                            #Vuex文件
@@ -109,7 +112,7 @@ npm install node-sass   -D
 * 8、百度浏览器、世界之窗内核：IE内核； 
 * 9、2345浏览器内核：以前是IE内核，现在也是IE+Chrome双内核；
 
-注：windows版QQ浏览器9代版本是webkit加Trident内核，10代是用的Chromium。Mac版是基于Chromium的。建议使用Firefox浏览器。
+注：windows版QQ浏览器9代版本是webkit加Trident内核，10代是用的Chromium,Mac版是基于Chromium的。建议使用Firefox浏览器。
 
 #### 具体如下：
 

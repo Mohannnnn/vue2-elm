@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        '/restapi': {
+          // 目标 API 地址
+          target: 'https://h5.ele.me:443/',
+          // 如果要代理 websockets
+          ws: true,
+          changeOrigin: true
+          // 将主机标头的原点更改为目标URL
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

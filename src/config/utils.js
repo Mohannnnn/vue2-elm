@@ -31,7 +31,6 @@ export const getItude =  async () => {
         });
         //解析定位结果
         function onComplete(data) {
-            console.log(data)
             reMsg.longitude = data.position.getLng();
             reMsg.latitude = data.position.getLat();
             reMsg.msg = data.message;

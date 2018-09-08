@@ -7,11 +7,15 @@
 
 <script>
 import Location from '../location/location'
-import {getItude} from '../../config/utils'
+import { getItude } from '../../config/utils'
+import { GetCurLocation } from '../../config/getData'
+
 export default {
   name: 'index',
   data () {
     return {
+      longitude : 0 ,
+      latitude : 0 ,
       msg: 'Mohan'
     }
   },
@@ -25,7 +29,11 @@ export default {
   },
   mounted() {
     getItude().then(res => {
-      
+      this.longitude = res.longitude;
+      this.latitude = res.latitude;
+      GetCurLocation(res.latitude , res.longitude).then(res => {
+        console.log('location' , res)
+      })
     });
   },
   created() {
