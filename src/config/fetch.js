@@ -14,7 +14,7 @@ export default async({url = '' , type = 'GET' , data = {}} = {}) => {
     }else if (type == 'POST') {
         data = JSON.stringify(data);
     }
-    if(window.fetch) {
+    if(!window.fetch) {
         let options = {
             method : type,
             credentials : 'include', //携带cookie
@@ -43,8 +43,12 @@ export default async({url = '' , type = 'GET' , data = {}} = {}) => {
             xhr.onreadystatechange = function (e) {
                 if(xhr.readyState == 4) {
                     if(xhr.status == 200) { // 304是不用判断的，因为每次请求会加入一个随机数，不会缓存。
-                        // if(xhr.response.constructor == Object)
-                        resolve(xhr.responseText);
+                        let responseJSON = ''
+                        if(xhr.response.constructor != Object) {
+                            responseJSON = JSON.parse(xhr.responseText)
+                        }
+                        // console.log(responseJSON)
+                        resolve(responseJSON);
                     }
                 }
             }
