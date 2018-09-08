@@ -31,8 +31,8 @@ export default async({url = '' , type = 'GET' , data = {}} = {}) => {
             })
         }
         const response = await fetch(url , options);
-            const responseJSON = await response.json();
-            return responseJSON;
+        const responseJSON = await response.json();
+        return responseJSON;
         
     }else {
        return new Promise((resolve) => {
