@@ -6,7 +6,7 @@
 
 ## 技术栈
 
-`webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex`
+`webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex` + `element`
 
 ## 开始步骤
 
@@ -40,7 +40,7 @@ npm run build --report
  |      index.js                    #公用配置部分
  |      prod.env.js                 #生产配置部分
  |-config                           #工具函数
- |      utils.js                    #获取经纬度函数（的Api）
+ |      utils.js                    #工具函数,比如:获取经纬度函数（的Api）
  |      getData.js                  #请求接口
  |      requestUrl.js               #请求接口的地址，统一管理
  |      fetch.js                    #封装请求的fetch方法
@@ -98,7 +98,7 @@ npm install node-sass   -D
 ```
 2.定位获取经纬度服务，我采用的是高德地图的API [相关文档](https://lbs.amap.com/api/javascript-api/example/location/browser-location)。
 
-3.在使用官方接口的时候，本地需要配置代理，在config/index.js中配置proxyTable.[https://cli.vuejs.org/zh/config/#devserver-proxy](https://cli.vuejs.org/zh/config/#devserver-proxy)
+3.在使用官方接口的时候，本地需要配置代理，在config/index.js中配置proxyTable。[https://cli.vuejs.org/zh/config/#devserver-proxy](https://cli.vuejs.org/zh/config/#devserver-proxy)
 
 4.fetch请求在转换response.json()的时候需要await。
 ```
