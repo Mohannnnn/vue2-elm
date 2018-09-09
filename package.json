@@ -11,6 +11,8 @@
     "build": "cross-env NODE_ENV=production node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^2.4.6",
+    "mint-ui": "^2.2.13",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

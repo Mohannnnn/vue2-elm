@@ -1,12 +1,12 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Mohannnnn</h2>
+  <div class="home">
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Location from '../location/location'
+import Footer from '../../components/footer'
 import { getItude } from '../../config/utils'
 import { GetCurLocation } from '../../config/getData'
 
@@ -15,12 +15,12 @@ export default {
   data () {
     return {
       longitude : 0 ,
-      latitude : 0 ,
-      msg: 'Mohan'
+      latitude : 0 
     }
   },
   components : {
-    Location
+    location,
+    Footer
   },
   computed: {},
   watch: {},
@@ -31,9 +31,9 @@ export default {
     getItude().then(res => {
       this.longitude = res.longitude;
       this.latitude = res.latitude;
-      GetCurLocation(res.latitude , res.longitude).then(res => {
-        console.log('location' , res)
-      })
+      // GetCurLocation(res.latitude , res.longitude).then(res => {
+      //   console.log('location' , res)
+      // })
     });
   },
   created() {
