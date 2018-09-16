@@ -34,6 +34,7 @@ export default {
       // GetCurLocation(res.latitude , res.longitude).then(res => {
       //   console.log('location' , res)
       // })
+      
     });
   },
   created() {
