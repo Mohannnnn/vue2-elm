@@ -107,7 +107,7 @@ const responseJSON = await response.json();
 return responseJSON;
 ```
 
-## 开发相关官方接口
+## 开发相关官方接口(如果是在localhost下使用的话,一定需要配置代理才行哦！切记！)
 
 - 1.选择地址的接口：https://h5.ele.me/restapi/bgs/poi/search_poi_nearby_alipay?keyword=竹园&offset=0&limit=20&latitude=40.032344&longitude=116.281948
 
