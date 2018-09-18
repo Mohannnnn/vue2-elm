@@ -6,7 +6,7 @@
 
 ## 技术栈
 
-`webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex` + `element`
+`webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex`
 
 ## 开始步骤
 
