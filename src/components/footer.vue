@@ -59,9 +59,41 @@ export default {
   components: {},
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    gotoAddress(path){
+        this.$router.push(path)
+    }
+  },
   mounted() {}
 };
 </script>
 <style lang='scss' scoped>
+@import '../assets/styles/mixin.scss';
+
+#foot_guide{
+    background-color: #fff;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include wh(100%, .45rem);
+    display: flex;
+    box-shadow: 0 -0.026667rem 0.053333rem rgba(0,0,0,.1);
+}
+.guide_item{
+    flex: 1;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    .icon_style{
+        @include wh(.2rem, .2rem);
+        margin-top: .1rem;
+        fill: #ccc;
+    }
+    span{
+        @include sc(.12rem, #666);
+    }
+}
 </style>
