@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import Location from '../location/location'
 import Footer from '../../components/footer'
 import { getItude } from '../../config/utils'
-import { GetCurLocation } from '../../config/getData'
+import { getCurLocation } from '../../config/getData'
+import { mapState } from 'vuex'
 
 export default {
   name: 'index',
