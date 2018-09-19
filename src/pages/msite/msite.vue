@@ -1,51 +1,53 @@
+/*
+ * @Author: wuhan  [https://github.com/Mohannnnn] 
+ * @Date: 2018-09-19 21:07:57 
+ * @Last Modified by: wuhan
+ * @Last Modified time: 2018-09-19 21:08:22
+ */
 <template>
   <div class="home">
-    <Footer></Footer>
+    <span>msite</span>
   </div>
 </template>
 
 <script>
-import Footer from '../../components/footer'
-import { getItude } from '../../config/utils'
-import { getCurLocation } from '../../config/getData'
-import { mapState } from 'vuex'
+import { getItude } from "../../config/utils";
+import { getCurLocation } from "../../config/getData";
+import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: 'index',
-  data () {
+  name: "index",
+  data() {
     return {
-      longitude : 0 ,
-      latitude : 0 
-    }
+    };
   },
-  components : {
-    location,
-    Footer
+  components: {
+    
   },
-  computed: {},
+  computed: {
+    ...mapState(["curLoName"])
+  },
   watch: {},
   methods: {
-
+    ...mapMutations(["SET_ITUDE", "SET_CURLONAME"])
   },
-  mounted() {
-    getItude().then(res => {
-      this.longitude = res.longitude;
-      this.latitude = res.latitude;
-      // GetCurLocation(res.latitude , res.longitude).then(res => {
-      //   console.log('location' , res)
-      // })
-      
-    });
-  },
+  mounted() {},
   created() {
-
+    getItude().then(res => {
+      this.SET_ITUDE(res);
+      // this.$store.commit('SET_ITUDE' , res)
+      getCurLocation(res.latitude, res.longitude).then(res => {
+        this.SET_CURLONAME({ curLoName: res.name });
+      });
+    });
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {

@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Footer from "@/components/footer";
 export default {
   name: 'App',
   data () {
@@ -12,8 +14,8 @@ export default {
       selected: 'tab-container1'
     }
   },
-  methods: {
-     
+  components : {
+    Footer
   }
 }
 </script>

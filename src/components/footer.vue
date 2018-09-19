@@ -21,29 +21,29 @@
 
 	    	</defs>
     	</svg>
-        <section @click = "gotoAddress({path: '/msite', query: {geohash}})" class="guide_item">
+        <section @click = "gotoAddress({path: '/msite'})" class="guide_item">
         	<svg class="icon_style">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('msite') !== -1? '#msiteActive' : '#msite'"></use>
             </svg>
-            <span>外卖</span>
+            <span :class="{'active' : isActive('msite')}">外卖</span>
         </section>
-        <section @click = "gotoAddress({path: `/search/${geohash}`})" class="guide_item">
+        <section @click = "gotoAddress({path: '/search/' , query : {value : ''}})" class="guide_item">
         	<svg class="icon_style">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('search') !== -1? '#findActive' : '#find'"></use>
             </svg>
-            <span>搜索</span>
+            <span :class="{'active' : isActive('search')}">搜索</span>
         </section>
-        <section @click = "gotoAddress('/order')" class="guide_item">
+        <section @click = "gotoAddress({path : '/order'})" class="guide_item">
         	<svg class="icon_style">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('order') !== -1? '#orderActive' : '#order'"></use>
             </svg>
-            <span>订单</span>
+            <span :class="{'active' : isActive('order')}">订单</span>
         </section>
-        <section @click = "gotoAddress('/profile')" class="guide_item">
+        <section @click = "gotoAddress({path : '/profile'})" class="guide_item">
         	<svg class="icon_style">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('profile') !== -1? '#profileActive' : '#profile'"></use>
             </svg>
-            <span>我的</span>
+            <span :class="{'active' : isActive('profile')}">我的</span>
         </section>
     </section>
   </div>
@@ -52,19 +52,31 @@
 <script>
 export default {
   data() {
-    return {
-      
+    return { 
     };
   },
   components: {},
   computed: {},
-  watch: {},
-  methods: {
-    gotoAddress(path){
-        this.$router.push(path)
+  watch: {
+    '$route'(to , from){
+        if(to) {
+            to.fullPath.indexOf('');
+        }
     }
   },
-  mounted() {}
+  methods: {
+    isActive(val) {
+        console.log(this.$route)
+        if(this.$route.fullPath.indexOf(val) != -1) {
+            return true;
+        }else {
+            return false;
+        }
+    },
+    gotoAddress(path){
+        this.$router.push(path);
+    }
+  }
 };
 </script>
 <style lang='scss' scoped>
@@ -94,6 +106,9 @@ export default {
     }
     span{
         @include sc(.12rem, #666);
+    }
+    .active {
+        color: $blue;
     }
 }
 </style>

@@ -1,12 +1,17 @@
+/*
+ * @Author: wuhan  [https://github.com/Mohannnnn] 
+ * @Date: 2018-09-19 21:09:56 
+ * @Last Modified by:   wuhan 
+ * @Last Modified time: 2018-09-19 21:09:56 
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-// import Msite from '@/pages/msite/msite'
 const  Msite  =  r => require.ensure([], () => r(require('@/pages/msite/msite')), 'msite')
-const  Search  =  r => require.ensure([], () => r(require('@/pages/msite/msite')), 'Search')
-const  Order  =  r => require.ensure([], () => r(require('@/pages/msite/msite')), 'Order')
-const  Profile  =  r => require.ensure([], () => r(require('@/pages/msite/msite')), 'Profile')
+const  Search  =  r => require.ensure([], () => r(require('@/pages/search/search')), 'search')
+const  Order  =  r => require.ensure([], () => r(require('@/pages/order/order')), 'order')
+const  Profile  =  r => require.ensure([], () => r(require('@/pages/profile/profile')), 'profile')
 
 export default new Router({
   mode: 'history',
