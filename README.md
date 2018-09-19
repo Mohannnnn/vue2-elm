@@ -44,6 +44,7 @@ npm run build --report
  |      getData.js                  #请求接口
  |      requestUrl.js               #请求接口的地址，统一管理
  |      fetch.js                    #封装请求的fetch方法
+ |      rem.js                      #移动端rem适配
  |-router                           #路由文件
  |      index.js                    #路由
  |-store                            #Vuex文件
