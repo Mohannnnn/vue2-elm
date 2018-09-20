@@ -2,15 +2,17 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-19 21:08:22
+ * @Last Modified time: 2018-09-20 15:46:21
  */
 <template>
   <div class="home">
     <span>msite</span>
+    <footer-v></footer-v>
   </div>
 </template>
 
 <script>
+import footerV from "@/components/footer";
 import { getItude } from "../../config/utils";
 import { getCurLocation } from "../../config/getData";
 import { mapState, mapMutations } from "vuex";
@@ -22,7 +24,7 @@ export default {
     };
   },
   components: {
-    
+    footerV
   },
   computed: {
     ...mapState(["curLoName"])

@@ -1,20 +1,26 @@
 /*
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:08:26 
- * @Last Modified by:   wuhan 
- * @Last Modified time: 2018-09-19 21:08:26 
+ * @Last Modified by: wuhan
+ * @Last Modified time: 2018-09-20 15:48:42
  */
 <template>
-   <div>order</div>
+   <div id="order">
+       order
+       <footer-v></footer-v>
+    </div>
 </template>
 
 <script>
+import footerV from '@/components/footer'
 export default {
     data () {
         return {
         };
     },
-    components: {},
+    components: {
+        footerV
+    },
     computed: {},
     watch: {},
     methods: {},
