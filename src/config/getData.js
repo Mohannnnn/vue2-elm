@@ -1,6 +1,10 @@
-/**
- * 获取数据接口
+/*
+ * @Author: wuhan  [https://github.com/Mohannnnn] 
+ * @Date: 2018-09-19 21:16:14 
+ * @Last Modified by:   wuhan 
+ * @Last Modified time: 2018-09-19 21:16:14 
  */
+
 import fetch from './fetch';
 import requestUrl from './requestUrl';
  

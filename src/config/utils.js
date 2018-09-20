@@ -1,6 +1,11 @@
-/**
-* 获取经纬度
-*/
+/*
+ * @Author: wuhan  [https://github.com/Mohannnnn] 
+ * @Date: 2018-09-19 21:15:25 
+ * @Last Modified by:   wuhan 
+ * @Last Modified time: 2018-09-19 21:15:25 
+ */
+
+//获取经纬度
 export const getItude =  async () => {
     let reMsg = {
         longitude : 0 , //经度

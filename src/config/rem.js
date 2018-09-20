@@ -1,3 +1,9 @@
+/*
+ * @Author: wuhan  [https://github.com/Mohannnnn] 
+ * @Date: 2018-09-19 21:16:07 
+ * @Last Modified by:   wuhan 
+ * @Last Modified time: 2018-09-19 21:16:07 
+ */
 (function(doc, win) {
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',

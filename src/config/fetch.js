@@ -1,6 +1,11 @@
-/**
- * 封装fetch请求方法
+/*
+ * @Author: wuhan  [https://github.com/Mohannnnn] 
+ * @Date: 2018-09-19 21:16:31 
+ * @Last Modified by:   wuhan 
+ * @Last Modified time: 2018-09-19 21:16:31 
  */
+
+ // 封装fetch请求方法
 export default async({url = '' , type = 'GET' , data = {}} = {}) => {
     type = type.toUpperCase();
     if(type == 'GET') {
