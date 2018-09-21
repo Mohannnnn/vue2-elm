@@ -81,7 +81,10 @@ npm run build --report
 ```
 ## 功能完成情况
 
-- [x] home
+- [] msite(首页)
+- [] order(订单)
+- [x] search(搜索)
+- [] profile(个人中心)
 
 ## 后端服务
 
