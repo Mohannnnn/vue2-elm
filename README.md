@@ -40,12 +40,6 @@ npm run build --report
  |      dev.env.js                  #开发配置部分    
  |      index.js                    #公用配置部分
  |      prod.env.js                 #生产配置部分
- |-config                           #工具函数
- |      utils.js                    #工具函数,比如:获取经纬度函数（的Api）
- |      getData.js                  #请求接口
- |      requestUrl.js               #请求接口的地址，统一管理
- |      fetch.js                    #封装请求的fetch方法
- |      rem.js                      #移动端rem适配
  |-router                           #路由文件
  |      index.js                    #路由
  |-store                            #Vuex文件
@@ -65,6 +59,12 @@ npm run build --report
  |      pages                       #页面目录
  |      router                      #路由目录
  |      store                       #Vuex状态管理目录
+ |      config                      #工具函数
+ |              utils.js            #工具函数,比如:获取经纬度函数（的Api）
+ |              getData.js          #请求接口
+ |              requestUrl.js       #请求接口的地址，统一管理
+ |              fetch.js            #封装请求的fetch方法
+ |              rem.js              #移动端rem适配
  |      App.vue                     #程序入口文件
  |      main.js                     #页面入口文件，加载各种公用组件
  |-index.html                       #html入口
