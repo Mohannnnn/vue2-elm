@@ -1,5 +1,6 @@
 ## vue2-elm
 > 模仿elm的H5商城。在写之前在github上也找过一些项目，恰巧看到了这篇[vue2-elm](https://github.com/bailicangdu/vue2-elm),于是开始下定决心做这个东西。
+> 所有的图标icon均来自[http://www.iconfont.cn/search/index](http://www.iconfont.cn/search/index)
 
 ## github地址
 [https://github.com/Mohannnnn/vue2-elm](https://github.com/Mohannnnn/vue2-elm)
@@ -113,6 +114,6 @@ return responseJSON;
 
 ## 开发相关官方接口(如果是在localhost下使用的话,一定需要配置代理才行哦！切记！)
 
-- 1.选择地址的接口：https://h5.ele.me/restapi/bgs/poi/search_poi_nearby_alipay?keyword=竹园&offset=0&limit=20&latitude=40.032344&longitude=116.281948
-
-- 2.自动定位接口：https://h5.ele.me/restapi/bgs/poi/reverse_geo_coding?latitude=40.032344&longitude=116.281948
+1.选择地址的接口：https://h5.ele.me/restapi/bgs/poi/search_poi_nearby_alipay?keyword=竹园&offset=0&limit=20&latitude=40.032344&longitude=116.281948
+2.自动定位接口：https://h5.ele.me/restapi/bgs/poi/reverse_geo_coding?latitude=40.032344&longitude=116.281948
+3.搜索框查找框接口：https://h5.ele.me/restapi/shopping/v1/typeahead?kw=%E6%B0%B4%E6%9E%9C&latitude=39.904172&longitude=116.407417&city_id=4
