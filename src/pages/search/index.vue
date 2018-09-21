@@ -2,18 +2,11 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-21 15:59:49
+ * @Last Modified time: 2018-09-21 17:27:44
  */
-
 <template>
    <div id="search">
-       <section class="search-head">
-            <img src="../../assets/svg/icon-back.svg" alt="" class="head-back"/>
-            <form>
-                <input type="search" placeholder="输入商家、商品名称" class="head-input" v-model="searchMsg">
-                <button type="button" class="head-btn" @click="searchPro">搜索</button>
-            </form>
-        </section>
+        <head-v placeholderMsg="输入商家、商品名称"></head-v>
         <section class="search-container">
             <div class="container-box" v-if="searchLocalList">
                 <h2 class="container-title">历史搜索</h2>
@@ -40,43 +33,26 @@
 </template>
 
 <script>
+import headV from './head'
 export default {
   data() {
     return {
-        searchLocalList : null ,
-        searchMsg  : ''
+        searchLocalList : null 
     };
   },
-  components: {},
+  components: {
+      headV
+  },
   computed: {
       
   },
   watch: {
-    //   searchMsg(){
-    //       console.log(this.searchMsg);
-    //   }
   },
   methods: {
-      searchPro() {
-          if(this.searchMsg != '')  this.setLocalSearchList(this.searchMsg ,'searchList');
-      },
       delLocalStr(value) {
           window.localStorage.removeItem(value , '');
           this.searchLocalList = null;
       },
-      setLocalSearchList(value , key) {
-          let searchList = this.getLocalSearchList(key);
-          if(!searchList) {
-            let array = [];
-            array.push(value);
-            window.localStorage.setItem(key , JSON.stringify(array));
-          }else if(JSON.stringify(searchList).indexOf(value) == -1){
-            if(searchList.constructor == Array) {
-                searchList.push(value);
-                window.localStorage.setItem(key , JSON.stringify(searchList));
-            } 
-          } 
-      }, 
       getLocalSearchList(value) {
           if(window.localStorage.getItem(value)) {
               return JSON.parse(window.localStorage.getItem(value));              
