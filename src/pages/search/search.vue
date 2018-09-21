@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-20 18:22:46
+ * @Last Modified time: 2018-09-20 18:35:21
  */
 
 <template>
@@ -13,6 +13,18 @@
                 <input type="search" placeholder="输入商家、商品名称" class="search-input">
                 <button type="submit" class="search-btn">搜索</button>
             </form>
+        </section>
+        <section class="search-container">
+            <h2>热门搜索</h2>
+            <div class="search-list">
+                <ul>
+                    <li>蛋糕</li>
+                    <li>蛋糕</li>
+                    <li>蛋糕</li>
+                    <li>蛋糕</li>
+                    <li>蛋糕</li>
+                </ul>
+            </div>
         </section>
     </div>
 </template>
