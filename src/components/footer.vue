@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     isActive(val) {
-        console.log(this.$route)
         if(this.$route.fullPath.indexOf(val) != -1) {
             return true;
         }else {

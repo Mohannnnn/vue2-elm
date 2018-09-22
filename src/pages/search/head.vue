@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-21 16:49:56 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-21 17:26:21
+ * @Last Modified time: 2018-09-21 18:52:17
  */
 <template>
     <section class="search-head">
@@ -30,7 +30,6 @@ export default {
         this.setLocalSearchList(this.searchMsg, "searchList");
     },
     goBack(){
-        console.log(this.$router);
         this.$router.go(-1);
     },
     setLocalSearchList(value, key) {

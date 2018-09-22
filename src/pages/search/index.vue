@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-21 17:27:44
+ * @Last Modified time: 2018-09-21 19:27:40
  */
 <template>
    <div id="search">
@@ -17,15 +17,14 @@
             </div>
             <div class="container-box">
                 <h2 class="container-title">热门搜索</h2>
-                <ul class="container-list">
-                    <li>蛋糕</li>
-                    <li>年糕</li>
-                    <li>可乐鸡翅</li>
-                    <li>汉堡包</li>
-                    <li>鸡腿</li>
+                <ul class="container-list" v-if="searchHotList!=''">
+                    <li v-for="(item ,index) in searchHotList" :key="index">{{ item.search_word }}</li>
+                </ul>
+                <ul class="container-list" v-else>
+                    <li>大枣</li>
+                    <li>大猪蹄子</li>
                     <li>麻辣烫</li>
-                    <li>串串</li>
-                    <li>烤乳猪</li>
+                    <li>火锅</li>
                 </ul>
             </div>
         </section>
@@ -33,18 +32,21 @@
 </template>
 
 <script>
-import headV from './head'
+import headV from './head';
+import { getSearchHotList } from '@/config/getData';
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
-        searchLocalList : null 
+        searchLocalList : null,
+        searchHotList   : []
     };
   },
   components: {
       headV
   },
   computed: {
-      
+      ...mapState(['latitude' ,'longitude'])
   },
   watch: {
   },
@@ -62,7 +64,13 @@ export default {
       }
   },
   mounted() {
+
+  },
+  created() {
       this.searchLocalList = this.getLocalSearchList('searchList');
+      getSearchHotList(this.latitude , this.longitude).then(res => {
+          this.searchHotList = res;
+      })
   }
 };
 </script>

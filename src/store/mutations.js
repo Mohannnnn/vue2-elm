@@ -4,18 +4,16 @@
  * @Last Modified by:   wuhan 
  * @Last Modified time: 2018-09-19 21:10:27 
  */
-const SET_ITUDE = 'SET_ITUDE';
-const SET_CURLONAME = 'SET_CURLONAME';
+const SET_LOCATIONMSG = 'SET_LOCATIONMSG';
 
 const mutations = {
-    //设置经纬度
-    [SET_ITUDE](state , {latitude , longitude}) {
-        state.latitude = latitude;
-		state.longitude = longitude;
-    },
-    //设置位置地点
-    [SET_CURLONAME](state , {curLoName}) {
-        state.curLoName = curLoName;
+    //设置地理位置信息
+    [SET_LOCATIONMSG](state , {latitude , longitude , city_id , city , name}) {
+        state.latitude  = latitude;
+        state.longitude = longitude;
+        state.cityId    = city_id;
+        state.cityName  = city;
+        state.curLocalName = name;
     }
 }
 

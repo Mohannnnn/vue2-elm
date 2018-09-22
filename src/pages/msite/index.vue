@@ -2,11 +2,11 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-20 15:46:21
+ * @Last Modified time: 2018-09-21 18:15:05
  */
 <template>
   <div class="home">
-    <span>msite</span>
+    <span>{{ curLocalName }}</span>
     <footer-v></footer-v>
   </div>
 </template>
@@ -27,19 +27,18 @@ export default {
     footerV
   },
   computed: {
-    ...mapState(["curLoName"])
+    ...mapState(['curLocalName'])
   },
   watch: {},
   methods: {
-    ...mapMutations(["SET_ITUDE", "SET_CURLONAME"])
+    ...mapMutations(['SET_LOCATIONMSG'])
   },
   mounted() {},
   created() {
     getItude().then(res => {
-      this.SET_ITUDE(res);
-      // this.$store.commit('SET_ITUDE' , res)
       getCurLocation(res.latitude, res.longitude).then(res => {
-        this.SET_CURLONAME({ curLoName: res.name });
+        // this.$store.commit('SET_LOCATIONMSG' , res)
+        this.SET_LOCATIONMSG(res);
       });
     });
   }

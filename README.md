@@ -119,3 +119,5 @@ return responseJSON;
 2.自动定位接口：https://h5.ele.me/restapi/bgs/poi/reverse_geo_coding?latitude=40.032344&longitude=116.281948
 
 3.搜索框查找框接口：https://h5.ele.me/restapi/shopping/v1/typeahead?kw=%E6%B0%B4%E6%9E%9C&latitude=39.904172&longitude=116.407417&city_id=4
+
+3.热门搜索接口：https://h5.ele.me/restapi/shopping/v3/hot_search_words?latitude=39.904172&longitude=116.407417 
