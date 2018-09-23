@@ -1,23 +1,24 @@
 /*
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:15:25 
- * @Last Modified by:   wuhan 
- * @Last Modified time: 2018-09-19 21:15:25 
+ * @Last Modified by: wuhan
+ * @Last Modified time: 2018-09-23 23:09:13
  */
-
 //获取经纬度
 export const getItude =  async () => {
     let reMsg = {
-        longitude : 0 , //经度
-        latitude : 0 ,  //纬度
+        longitude : 116.286225, //经度
+        latitude : 40.032527 ,  //纬度
         status : 0,
         address : '',
+        status : 0,
         msg : ''
     }
     if(!window.AMap) require('../plugins/aMap.js');
     return await new Promise(resolve => {
         let map, geolocation;
         //加载地图，调用浏览器定位服务
+        // console.log(window.AMap)
         map = new AMap.Map('', {
             resizeEnable: true
         });

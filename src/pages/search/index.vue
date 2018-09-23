@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-21 19:27:40
+ * @Last Modified time: 2018-09-23 23:15:01
  */
 <template>
    <div id="search">
@@ -121,7 +121,7 @@ export default {
             @include sc(.28rem , #666666);
             flex-wrap: wrap;
             li {
-                padding: .2rem;
+                padding: .1rem .2rem;
                 margin: .25rem .25rem 0 0;
                 background-color: #f7f7f7;
             }

@@ -9,9 +9,11 @@ html {
 }
 
 /* 禁止缩放表单 */
-input[type="submit"], input[type="reset"], input[type="button"], input {
+input[type="submit"], input[type="reset"], input[type="button"], input ,textarea , button{
     resize: none;
     border: none;
+    -webkit-appearance: none;
+    background: none;
 }
 
 /* 取消链接高亮  */
