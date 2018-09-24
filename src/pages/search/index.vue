@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-24 23:08:42
+ * @Last Modified time: 2018-09-24 23:12:59
  */
 <template>
    <div id="search">
@@ -35,7 +35,7 @@
                     <div class="relate-msg">
                         <span class="name">{{ item.name }}</span>
                         <span class="tags" v-if="item.tags" v-for="(tags , indexs) in item.tags" :key="indexs" :style="`background-color:#${tags.name_color}`">{{ tags.name }}</span>
-                        <span class="evaluation">评价{{item.rating}}</span>
+                        <span class="evaluation">评价{{item.rating.toFixed(1)}}</span>
                     </div>
                 </li>
                 <li v-if="relateListMsg.words" v-for="words in relateListMsg.words" :key="words">
