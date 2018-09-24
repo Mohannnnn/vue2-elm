@@ -2,12 +2,12 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-24 19:30:37
+ * @Last Modified time: 2018-09-24 23:08:42
  */
 <template>
    <div id="search">
         <head-v placeholderMsg="输入商家、商品名称" v-on:listenShowContainer="listenEvent"></head-v> 
-        <section class="search-container" v-show="showContainer">
+        <section class="search-container" v-if="showContainer">
             <div class="container-box" v-if="searchLocalList">
                 <h2 class="container-title">历史搜索</h2>
                 <img class="delete" src="../../assets/svg/icon-delete.svg" alt="删除" @click="delLocalStr('searchList')">
@@ -28,23 +28,38 @@
                 </ul>
             </div>
         </section>
-        <section class="search-relatelist" v-show="!showContainer">
-
+        <section v-else>
+            <ul class="search-relatelist">
+                <li v-if="relateListMsg.restaurants" v-for="(item , index) in relateListMsg.restaurants" :key="index">
+                    <img :src="`${relateListImg}${item.image_path.substr(0,1)}/${item.image_path.substr(1,1)}/${item.image_path.substr(2)}.${item.image_path.substr(32)}`" alt="">
+                    <div class="relate-msg">
+                        <span class="name">{{ item.name }}</span>
+                        <span class="tags" v-if="item.tags" v-for="(tags , indexs) in item.tags" :key="indexs" :style="`background-color:#${tags.name_color}`">{{ tags.name }}</span>
+                        <span class="evaluation">评价{{item.rating}}</span>
+                    </div>
+                </li>
+                <li v-if="relateListMsg.words" v-for="words in relateListMsg.words" :key="words">
+                    <img src="../../assets/svg/icon-search.svg" alt="">
+                    <div class="relate-msg">{{ words }}</div>
+                </li>
+            </ul>
         </section>
     </div>
 </template>
 
 <script>
 import headV from './head';
-import { getLocalStorage , delLocalStorage} from '@/config/utils';
-import { getSearchHotList } from '@/config/getData';
+import { getLocalStorage , delLocalStorage } from '@/config/utils';
+import { getSearchHotList , getSearchRelateList } from '@/config/getData';
 import { mapState } from 'vuex';
 export default {
   data() {
     return {
         searchLocalList : null,
         searchHotList   : [],
-        showContainer   : true
+        showContainer   : true,
+        relateListImg   : 'https://fuss10.elemecdn.com/',
+        relateListMsg   : {}
     };
   },
   components: {
@@ -57,6 +72,9 @@ export default {
         },
         longitude(state){
             return state.longitude !='' ? state.longitude : getLocalStorage('locationMsg').longitude;
+        },
+        cityId(state){
+            return state.cityId !='' ? state.cityId : getLocalStorage('locationMsg').cityId;
         }
     })
   },
@@ -65,6 +83,11 @@ export default {
   methods: {
       listenEvent(data){
           this.showContainer = !data;
+          if(data != '') {
+              getSearchRelateList(data , this.latitude , this.longitude , this.cityId).then(res => {
+                  this.relateListMsg = res;
+              })
+          }
       },
       delLocalStr(value) {
           delLocalStorage(value);
@@ -84,32 +107,6 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import "@/assets/styles/mixin.scss";
-.search-head {
-  @include fj(space-between, center);
-  .head-back {
-    padding-left: 0.2rem;
-  }
-  form {
-    @include fj(space-between, center);
-    padding: 0.22rem 0.22rem 0.22rem 0;
-    margin-left: 0.22rem;
-    flex: auto;
-    .head-input {
-      @include sc(0.26rem, #666);
-      flex: auto;
-      padding: 0.13rem 0.3rem 0.13rem 0.66rem;
-      margin-right: 0.3rem;
-      background: url("../../assets/svg/icon-search.svg") no-repeat 0.16rem
-        0.16rem;
-      background-color: #f5f5f5;
-      border-radius: 0.1rem;
-    }
-    .head-btn {
-      @include sc(0.3rem, #333333);
-      font-weight: bold;
-    }
-  }
-}
 .search-container {
   padding: 0 0.24rem;
   .container-box {
@@ -136,5 +133,36 @@ export default {
       }
     }
   }
+}
+.search-relatelist {
+    padding: 0 .24rem;
+    li {
+        @include fj(flex-start , center);
+        img {
+            max-width: .48rem;
+            height: auto;
+            margin-right: .24rem;
+        }
+        .relate-msg{
+            @include sc(.28rem,#333333);
+            padding: .24rem 0;
+            flex: auto;
+            text-align: left;
+            border-bottom: 1px solid #e3e3e3;
+            .name{
+                @include sc(.28rem,#333333);
+                margin-right: .2rem;
+            }
+            .tags{
+                @include sc(.24rem,#ffffff);
+                padding: 0 .05rem;
+                margin-right: .1rem;
+            }
+            .evaluation{
+                @include sc(.26rem,#999999);
+                float: right;
+            }
+        }            
+    }
 }
 </style>

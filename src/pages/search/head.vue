@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-21 16:49:56 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-24 18:55:46
+ * @Last Modified time: 2018-09-24 22:08:17
  */
 <template>
     <section class="search-head">
@@ -50,7 +50,7 @@ export default {
   }
   form {
     @include fj(space-between, center);
-    padding: 0.22rem 0.22rem 0.22rem 0;
+    padding: 0.22rem 0.24rem 0.22rem 0;
     margin-left: 0.22rem;
     flex: auto;
     .head-input {

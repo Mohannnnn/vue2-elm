@@ -11,7 +11,6 @@ export default {
   name: 'App',
   data () {
     return {
-      selected: 'tab-container1'
     }
   },
   components : {
@@ -23,7 +22,7 @@ export default {
 <style>
 @import './assets/styles/reset.css';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
