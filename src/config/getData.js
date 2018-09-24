@@ -26,9 +26,9 @@ export const getSearchHotList = (latitude , longitude) => fetch({
     }
 })
 
-//获取搜索结果列表
-export const getSearchList = (key , latitude , longitude , cityId) => fetch({
-    url : requestUrl.searchHotList,
+//获取搜索推荐结果列表
+export const getSearchRelateList = (key , latitude , longitude , cityId = 3) => fetch({
+    url : requestUrl.searchRelateList,
     data : {
         kw : key ,
         latitude : latitude,

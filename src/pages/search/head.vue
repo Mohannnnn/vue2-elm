@@ -2,19 +2,20 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-21 16:49:56 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-21 18:52:17
+ * @Last Modified time: 2018-09-24 18:55:46
  */
 <template>
     <section class="search-head">
         <img src="../../assets/svg/icon-back.svg" alt="" class="head-back" @click="goBack"/>
         <form>
-            <input type="search" :placeholder="placeholderMsg" class="head-input" v-model="searchMsg">
+            <input type="search" :placeholder="placeholderMsg" class="head-input" v-model="searchMsg" >
             <button type="button" class="head-btn" @click="searchPro">搜索</button>
         </form>
-</section>
+    </section>
 </template>
 
 <script>
+import {setLocalStorage} from '@/config/utils';
 export default {
   data() {
     return {
@@ -23,34 +24,18 @@ export default {
   },
   props : ['placeholderMsg'],
   computed: {},
-  watch: {},
+  watch: {
+      searchMsg(){
+        this.$emit("listenShowContainer" , this.searchMsg)
+      }
+  },
   methods: {
     searchPro() {
       if (this.searchMsg != '')
-        this.setLocalSearchList(this.searchMsg, "searchList");
+        setLocalStorage(this.searchMsg, "searchList");
     },
     goBack(){
         this.$router.go(-1);
-    },
-    setLocalSearchList(value, key) {
-      let searchList = this.getLocalSearchList(key);
-      if (!searchList) {
-        let array = [];
-        array.push(value);
-        window.localStorage.setItem(key, JSON.stringify(array));
-      } else if (JSON.stringify(searchList).indexOf(value) == -1) {
-        if (searchList.constructor == Array) {
-          searchList.push(value);
-          window.localStorage.setItem(key, JSON.stringify(searchList));
-        }
-      }
-    },
-    getLocalSearchList(value) {
-      if (window.localStorage.getItem(value)) {
-        return JSON.parse(window.localStorage.getItem(value));
-      } else {
-        return '';
-      }
     }
   },
   mounted() {}

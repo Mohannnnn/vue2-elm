@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-23 23:09:34
+ * @Last Modified time: 2018-09-24 19:24:48
  */
 <template>
   <div class="home">
@@ -13,8 +13,8 @@
 
 <script>
 import footerV from "@/components/footer";
-import { getItude } from "../../config/utils";
-import { getCurLocation } from "../../config/getData";
+import { getItude , setLocalStorage} from "@/config/utils";
+import { getCurLocation } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -39,6 +39,7 @@ export default {
       getCurLocation(res.latitude, res.longitude).then(res => {
         // this.$store.commit('SET_LOCATIONMSG' , res)
         this.SET_LOCATIONMSG(res);
+        setLocalStorage(res , 'locationMsg');
       });
     });
   }

@@ -2,12 +2,12 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-23 23:15:01
+ * @Last Modified time: 2018-09-24 19:30:37
  */
 <template>
    <div id="search">
-        <head-v placeholderMsg="输入商家、商品名称"></head-v>
-        <section class="search-container">
+        <head-v placeholderMsg="输入商家、商品名称" v-on:listenShowContainer="listenEvent"></head-v> 
+        <section class="search-container" v-show="showContainer">
             <div class="container-box" v-if="searchLocalList">
                 <h2 class="container-title">历史搜索</h2>
                 <img class="delete" src="../../assets/svg/icon-delete.svg" alt="删除" @click="delLocalStr('searchList')">
@@ -28,46 +28,54 @@
                 </ul>
             </div>
         </section>
+        <section class="search-relatelist" v-show="!showContainer">
+
+        </section>
     </div>
 </template>
 
 <script>
 import headV from './head';
+import { getLocalStorage , delLocalStorage} from '@/config/utils';
 import { getSearchHotList } from '@/config/getData';
 import { mapState } from 'vuex';
 export default {
   data() {
     return {
         searchLocalList : null,
-        searchHotList   : []
+        searchHotList   : [],
+        showContainer   : true
     };
   },
   components: {
       headV
   },
   computed: {
-      ...mapState(['latitude' ,'longitude'])
+    ...mapState({
+        latitude(state){
+            return state.latitude !='' ? state.latitude : getLocalStorage('locationMsg').latitude;
+        },
+        longitude(state){
+            return state.longitude !='' ? state.longitude : getLocalStorage('locationMsg').longitude;
+        }
+    })
   },
   watch: {
   },
   methods: {
-      delLocalStr(value) {
-          window.localStorage.removeItem(value , '');
-          this.searchLocalList = null;
+      listenEvent(data){
+          this.showContainer = !data;
       },
-      getLocalSearchList(value) {
-          if(window.localStorage.getItem(value)) {
-              return JSON.parse(window.localStorage.getItem(value));              
-          }else {
-              return ''
-          }
+      delLocalStr(value) {
+          delLocalStorage(value);
+          this.searchLocalList = null;
       }
   },
   mounted() {
 
   },
   created() {
-      this.searchLocalList = this.getLocalSearchList('searchList');
+      this.searchLocalList = getLocalStorage('searchList');
       getSearchHotList(this.latitude , this.longitude).then(res => {
           this.searchHotList = res;
       })
@@ -91,7 +99,8 @@ export default {
       flex: auto;
       padding: 0.13rem 0.3rem 0.13rem 0.66rem;
       margin-right: 0.3rem;
-      background: url("../../assets/svg/icon-search.svg") no-repeat 0.16rem 0.16rem;
+      background: url("../../assets/svg/icon-search.svg") no-repeat 0.16rem
+        0.16rem;
       background-color: #f5f5f5;
       border-radius: 0.1rem;
     }
@@ -102,31 +111,30 @@ export default {
   }
 }
 .search-container {
-    padding: 0 .24rem;
-    .container-box {
-        position: relative;
-        padding: .2rem 0 ;
-        .container-title {
-            @include sc(.30rem , #666666);
-            text-align: left;
-            padding-bottom: .2rem;
-        }
-        .delete {
-            position: absolute;
-            right: 0;
-            top: .22rem;;
-        }
-        .container-list {
-            @include fj(flex-start, center);
-            @include sc(.28rem , #666666);
-            flex-wrap: wrap;
-            li {
-                padding: .1rem .2rem;
-                margin: .25rem .25rem 0 0;
-                background-color: #f7f7f7;
-            }
-        }
-        
+  padding: 0 0.24rem;
+  .container-box {
+    position: relative;
+    padding: 0.2rem 0;
+    .container-title {
+      @include sc(0.3rem, #666666);
+      text-align: left;
+      padding-bottom: 0.2rem;
     }
+    .delete {
+      position: absolute;
+      right: 0;
+      top: 0.22rem;
+    }
+    .container-list {
+      @include fj(flex-start, center);
+      @include sc(0.28rem, #666666);
+      flex-wrap: wrap;
+      li {
+        padding: 0.1rem 0.2rem;
+        margin: 0.25rem 0.25rem 0 0;
+        background-color: #f7f7f7;
+      }
+    }
+  }
 }
 </style>
