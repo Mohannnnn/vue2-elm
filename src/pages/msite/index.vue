@@ -2,11 +2,10 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-26 19:23:41
+ * @Last Modified time: 2018-09-26 21:02:57
  */
 <template>
   <div class="msite">
-    <!-- <span></span> -->
     <header>
       <div class="msite-location">
         <img src="../../assets/svg/icon-location.svg" alt="定位">
@@ -17,18 +16,21 @@
         <span>搜索饿了么商家、商品名称</span>
       </router-link>
     </header>
+    <section class="msite-modelist">
+
+    </section>
     <footer-v></footer-v>
   </div>
 </template>
 
 <script>
 import footerV from "@/components/footer";
-import { getItude , setLocalStorage} from "@/config/utils";
-import { getCurLocation } from "@/config/getData";
+import {  getLocalStorage} from "@/config/utils";
+import {  getMsiteModeList } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: "index",
+  name: "msite",
   data() {
     return {
     };
@@ -37,21 +39,27 @@ export default {
     footerV
   },
   computed: {
-    ...mapState(['curLocalName'])
+    ...mapState({
+          latitude(state){
+              return state.latitude !='' ? state.latitude : getLocalStorage('locationMsg').latitude;
+          },
+          longitude(state){
+              return state.longitude !='' ? state.longitude : getLocalStorage('locationMsg').longitude;
+          },
+          curLocalName(state) {
+              return state.curLocalName !='' ? state.curLocalName : getLocalStorage('locationMsg').name;
+          }
+    })
   },
   watch: {},
   methods: {
-    ...mapMutations(['SET_LOCATIONMSG'])
+    
   },
-  mounted() {},
+  mounted() {
+    getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
+  },
   created() {
-    getItude().then(res => {
-      getCurLocation(res.latitude, res.longitude).then(res => {
-        // this.$store.commit('SET_LOCATIONMSG' , res)
-        this.SET_LOCATIONMSG(res);
-        setLocalStorage(res , 'locationMsg');
-      });
-    });
+    
   }
 };
 </script>

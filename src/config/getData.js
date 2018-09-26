@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:16:14 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-21 19:03:16
+ * @Last Modified time: 2018-09-26 21:01:54
  */
 
 import fetch from './fetch';
@@ -34,5 +34,15 @@ export const getSearchRelateList = (key , latitude , longitude , cityId = 3) => 
         latitude : latitude,
         longitude : longitude,
         city_id : cityId
+    }
+})
+
+//首页外卖类型接口列表
+export const getMsiteModeList = (latitude , longitude) => fetch({
+    url : requestUrl.msiteModeList,
+    data : {
+        terminal      : 'h5',
+        latitude      : latitude,
+        longitude     : longitude 
     }
 })
