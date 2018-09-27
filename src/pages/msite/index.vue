@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-27 12:40:28
+ * @Last Modified time: 2018-09-27 13:36:27
  */
 <template>
   <div class="msite">
@@ -21,13 +21,14 @@
 
       </section>
     </section>
-    <section class="loading" v-else></section>
+    <loading-v v-else></loading-v>
     <footer-v></footer-v>
   </div>
 </template>
 
 <script>
 import footerV from "@/components/footer";
+import loadingV from "@/components/loading";
 import {  getLocalStorage} from "@/config/utils";
 import {  getMsiteModeList } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
@@ -40,7 +41,8 @@ export default {
     };
   },
   components: {
-    footerV
+    footerV,
+    loadingV
   },
   computed: {
     ...mapState(['latitude','longitude','curLocalName'])

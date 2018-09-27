@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:15:25 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-27 09:46:51
+ * @Last Modified time: 2018-09-27 13:29:19
  */
 //获取经纬度
 export const getItude =  async () => {
@@ -86,3 +86,8 @@ export const delLocalStorage = (value) => {
     if(!!value) window.localStorage.removeItem(value , '');
 }
 
+//格式化饿了么接口中的图片地址
+export const getElmImageUrl = (value) => {
+    const imgHeadUrl = 'https://fuss10.elemecdn.com/';
+    return `${imgHeadUrl}${value.substr(0,1)}/${value.substr(1,1)}/${value.substr(2)}.${value.substr(32)}`;
+}

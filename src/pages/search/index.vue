@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:09:06 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-24 23:12:59
+ * @Last Modified time: 2018-09-27 13:35:21
  */
 <template>
    <div id="search">
@@ -31,7 +31,7 @@
         <section v-else>
             <ul class="search-relatelist">
                 <li v-if="relateListMsg.restaurants" v-for="(item , index) in relateListMsg.restaurants" :key="index">
-                    <img :src="`${relateListImg}${item.image_path.substr(0,1)}/${item.image_path.substr(1,1)}/${item.image_path.substr(2)}.${item.image_path.substr(32)}`" alt="">
+                    <img :src="getElmImageUrl(item.image_path)" alt="">
                     <div class="relate-msg">
                         <span class="name">{{ item.name }}</span>
                         <span class="tags" v-if="item.tags" v-for="(tags , indexs) in item.tags" :key="indexs" :style="`background-color:#${tags.name_color}`">{{ tags.name }}</span>
@@ -49,7 +49,7 @@
 
 <script>
 import headV from './head';
-import { getLocalStorage , delLocalStorage } from '@/config/utils';
+import { getLocalStorage , delLocalStorage , getElmImageUrl} from '@/config/utils';
 import { getSearchHotList , getSearchRelateList } from '@/config/getData';
 import { mapState } from 'vuex';
 export default {
@@ -58,7 +58,6 @@ export default {
         searchLocalList : null,
         searchHotList   : [],
         showContainer   : true,
-        relateListImg   : 'https://fuss10.elemecdn.com/',
         relateListMsg   : {}
     };
   },
@@ -92,7 +91,8 @@ export default {
       delLocalStr(value) {
           delLocalStorage(value);
           this.searchLocalList = null;
-      }
+      },
+      getElmImageUrl
   },
   mounted() {
 
