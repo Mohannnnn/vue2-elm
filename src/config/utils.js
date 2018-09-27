@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:15:25 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-24 19:02:35
+ * @Last Modified time: 2018-09-27 09:46:51
  */
 //获取经纬度
 export const getItude =  async () => {

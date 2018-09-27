@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { getItude , setLocalStorage } from "@/config/utils";
+import { getItude , setLocalStorage } from "./config/utils.js";
 import { getCurLocation } from "@/config/getData";
 import { mapMutations } from "vuex";
 export default {
@@ -22,7 +22,7 @@ export default {
   methods: {
     ...mapMutations(['SET_LOCATIONMSG'])
   },
-  beforeCreated() {
+  created() {
     getItude().then(res => {
       getCurLocation(res.latitude, res.longitude).then(res => {
         // this.$store.commit('SET_LOCATIONMSG' , res)

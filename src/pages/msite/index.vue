@@ -2,14 +2,14 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-26 21:02:57
+ * @Last Modified time: 2018-09-27 11:09:29
  */
 <template>
   <div class="msite">
     <header>
       <div class="msite-location">
         <img src="../../assets/svg/icon-location.svg" alt="定位">
-        <span class="msg">{{ curLocalName }}</span>
+        <span class="msg">{{ !!curLocalName ? curLocalName : '正在获取位置信息 ...' }}</span>
       </div>
       <router-link tag="div" class="msite-search" to="/search">
         <img src="../../assets/svg/icon-search.svg" alt="搜索">
@@ -39,27 +39,21 @@ export default {
     footerV
   },
   computed: {
-    ...mapState({
-          latitude(state){
-              return state.latitude !='' ? state.latitude : getLocalStorage('locationMsg').latitude;
-          },
-          longitude(state){
-              return state.longitude !='' ? state.longitude : getLocalStorage('locationMsg').longitude;
-          },
-          curLocalName(state) {
-              return state.curLocalName !='' ? state.curLocalName : getLocalStorage('locationMsg').name;
-          }
-    })
+    ...mapState(['latitude','longitude','curLocalName'])
   },
-  watch: {},
+  watch: {
+    latitude(a , b){
+      console.log(a , b);
+      getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
+    }
+  },
   methods: {
     
   },
   mounted() {
-    getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
+    // getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
   },
   created() {
-    
   }
 };
 </script>
