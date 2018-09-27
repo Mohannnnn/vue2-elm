@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-27 11:09:29
+ * @Last Modified time: 2018-09-27 12:40:28
  */
 <template>
   <div class="msite">
@@ -16,9 +16,12 @@
         <span>搜索饿了么商家、商品名称</span>
       </router-link>
     </header>
-    <section class="msite-modelist">
+    <section class="msite-content" v-if="isSuccLocation">
+      <section class="msite-modelist">
 
+      </section>
     </section>
+    <section class="loading" v-else></section>
     <footer-v></footer-v>
   </div>
 </template>
@@ -33,6 +36,7 @@ export default {
   name: "msite",
   data() {
     return {
+      isSuccLocation : false
     };
   },
   components: {
@@ -42,8 +46,8 @@ export default {
     ...mapState(['latitude','longitude','curLocalName'])
   },
   watch: {
-    latitude(a , b){
-      console.log(a , b);
+    latitude(){
+      this.isSuccLocation = true;
       getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
     }
   },
