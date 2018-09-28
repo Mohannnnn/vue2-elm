@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-28 16:19:30
+ * @Last Modified time: 2018-09-28 21:19:00
  */
 <template>
   <div class="msite">
@@ -17,22 +17,43 @@
       </router-link>
     </header>
     <section class="msite-content" v-if="isSuccLocation">
-      <div class="swiper-container" v-if="!!modelist">
+      <div class="swiper-container-modelist" v-if="!!modeList">
           <div class="swiper-wrapper">
-            <ul class="swiper-slide msite-modelist">
-              <li v-for="(item , index) in modelist.slice(0,10)" :key="index">
+            <ul class="swiper-slide content-modelist">
+              <li v-for="(item , index) in modeList.slice(0,10)" :key="index">
                 <img :src="getElmImageUrl(item.image_hash)" alt="">
                 <span>{{ item.name }}</span>
               </li>
             </ul>
-            <ul class="swiper-slide msite-modelist">
-              <li v-for="(items , index) in modelist.slice(10,20)" :key="index">
+            <ul class="swiper-slide content-modelist">
+              <li v-for="(items , index) in modeList.slice(10,20)" :key="index">
                 <img :src="getElmImageUrl(items.image_hash)" alt="">
                 <span>{{ items.name }}</span>
               </li>
             </ul>
           </div>
           <div class="swiper-pagination"></div>
+      </div>
+      <div class="content-activitylist" v-if="!!activityList">
+        <div class="activitylist-box">
+          <h3>{{ activityList.name }}</h3>
+          <div class="description">{{ activityList.description }}</div>
+          <div class="population"><span>{{ JSON.parse(activityList.more).population }}</span>人正在抢 ></div>
+          <img :src="getElmImageUrl(activityList.image_hash)" alt="">
+        </div>
+        <div class="activitylist-box">
+            <h3>{{ activityList.name }}</h3>
+            <div class="description">{{ activityList.description }}</div>
+            <div class="population"><span>{{ JSON.parse(activityList.more).population }}</span>人正在抢 ></div>
+            <img :src="getElmImageUrl(activityList.image_hash)" alt="">
+          </div>
+      </div>
+      <div class="swiper-container-banner" v-if="!!bannerList">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item , index) in bannerList" :key="index">  
+                <img :src="getElmImageUrl(item.image_hash)" alt="">
+            </div>
+          </div>
       </div>
     </section>
     <loading-v v-else></loading-v>
@@ -44,15 +65,17 @@
 import footerV from "@/components/footer";
 import loadingV from "@/components/loading";
 import {  getLocalStorage , getElmImageUrl } from "@/config/utils";
-import {  getMsiteModeList } from "@/config/getData";
+import {  getMsiteModeList , getMsiteBannerList , getMsiteBarList } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "msite",
   data() {
     return {
-      isSuccLocation : false,
-      modelist : null,
+      isSuccLocation  : false,
+      modeList        : null,   //模式列表数据
+      activityList    : null,   //活动优惠列表数据
+      bannerList      : null,   //banner
     };
   },
   components: {
@@ -63,28 +86,47 @@ export default {
     ...mapState(['latitude','longitude','curLocalName'])
   },
   watch: {
+    isSuccLocation(){
+      this.contentInit();
+    },
     latitude(){
-      const _this = this;
       this.isSuccLocation = true;
-      getMsiteModeList(this.latitude , this.longitude).then(res => {
-        this.modelist = res[0].entries;
-        setTimeout(function(){
-          _this.startSwiper();
-        } ,100) 
-      });
     }
   },
   methods: {
     getElmImageUrl,
-    startSwiper() {
-       var swiper = new Swiper('.swiper-container', {
-          loop:true,
-          pagination: '.swiper-pagination'
-        })
+    contentInit(){
+      // 获取modeList
+      getMsiteModeList(this.latitude , this.longitude).then(res => {
+        this.modeList = res[0].entries;
+        this.activityList = (res[1].entries)[0];
+        setTimeout(function(){
+          new Swiper('.swiper-container-modelist', {
+            loop:true,
+            pagination: '.swiper-pagination'
+          })
+        } ,100) 
+      });
+      //获取banner
+      getMsiteBannerList(this.latitude , this.longitude).then(res => {
+        this.bannerList = res;
+        setTimeout(function(){
+          new Swiper('.swiper-container-banner', {
+            autoplay : 2000,
+            loop:true
+          })
+        } ,100) 
+      });
+      //获取bar
+      getMsiteBarList(this.latitude , this.longitude).then(res => {
+        console.log(res);
+      })
     }
   },
   mounted() {
-     
+     if(this.latitude != '') {
+       this.isSuccLocation = true;
+     }
   },
   created() {
   }
@@ -114,10 +156,11 @@ header{
   }
 }
 .msite-content {
-  .swiper-container {
+  .swiper-container-modelist {
+    position: relative;
     padding-bottom:.6rem;
   }
-  .msite-modelist{
+  .content-modelist{
     @include fj(flex-start ,center);
     flex-wrap: wrap;
     li {
@@ -132,6 +175,43 @@ header{
         @include sc(.24rem, #666666);
         text-align: center;
       }
+    }
+  }
+  .content-activitylist {
+    @include fj(center ,center);
+    padding: 0 0.14rem;
+    .activitylist-box {
+      position: relative;
+      width: 50%;
+      background: linear-gradient(0deg,#f4f4f4 5%,#fafafa 95%);
+      margin: 0 0.1rem;
+      padding: 0.2rem 0 0 .3rem;
+      text-align: left;
+    }
+    h3{
+      @include sc(.32rem , #e81919);
+    }
+    .description {
+      @include sc(.24rem , #777);
+    }
+    .population {
+      @include sc(.24rem , #000000);
+      span {
+        @include sc(.24rem , #e81919);
+      }
+    }
+    img{
+      width: 2.4rem;
+      height: auto; 
+      float: right;
+    }
+  }
+  .swiper-container-banner {
+    margin: .14rem .24rem;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }

@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:16:14 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-26 21:01:54
+ * @Last Modified time: 2018-09-28 20:34:09
  */
 
 import fetch from './fetch';
@@ -40,6 +40,37 @@ export const getSearchRelateList = (key , latitude , longitude , cityId = 3) => 
 //首页外卖类型接口列表
 export const getMsiteModeList = (latitude , longitude) => fetch({
     url : requestUrl.msiteModeList,
+    data : {
+        terminal      : 'h5',
+        latitude      : latitude,
+        longitude     : longitude 
+    }
+})
+
+//首页banner接口
+export const getMsiteBannerList = (latitude , longitude) => fetch({
+    url : requestUrl.msiteBannerList,
+    data : {
+        consumer      : 1,
+        type          : 1,
+        latitude      : latitude,
+        longitude     : longitude 
+    }
+})
+
+//首页推荐商家bar接口
+export const getMsiteBarList = (latitude , longitude) => fetch({
+    url : requestUrl.msiteBarList,
+    data : {
+        terminal      : 'h5',
+        latitude      : latitude,
+        longitude     : longitude 
+    }
+})
+
+//首页商家接口
+export const getRestaurantsList = (latitude , longitude) => fetch({
+    url : requestUrl.barList,
     data : {
         terminal      : 'h5',
         latitude      : latitude,
