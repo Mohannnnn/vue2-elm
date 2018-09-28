@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-27 13:36:27
+ * @Last Modified time: 2018-09-28 16:19:30
  */
 <template>
   <div class="msite">
@@ -17,9 +17,23 @@
       </router-link>
     </header>
     <section class="msite-content" v-if="isSuccLocation">
-      <section class="msite-modelist">
-
-      </section>
+      <div class="swiper-container" v-if="!!modelist">
+          <div class="swiper-wrapper">
+            <ul class="swiper-slide msite-modelist">
+              <li v-for="(item , index) in modelist.slice(0,10)" :key="index">
+                <img :src="getElmImageUrl(item.image_hash)" alt="">
+                <span>{{ item.name }}</span>
+              </li>
+            </ul>
+            <ul class="swiper-slide msite-modelist">
+              <li v-for="(items , index) in modelist.slice(10,20)" :key="index">
+                <img :src="getElmImageUrl(items.image_hash)" alt="">
+                <span>{{ items.name }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="swiper-pagination"></div>
+      </div>
     </section>
     <loading-v v-else></loading-v>
     <footer-v></footer-v>
@@ -29,7 +43,7 @@
 <script>
 import footerV from "@/components/footer";
 import loadingV from "@/components/loading";
-import {  getLocalStorage} from "@/config/utils";
+import {  getLocalStorage , getElmImageUrl } from "@/config/utils";
 import {  getMsiteModeList } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
 
@@ -37,7 +51,8 @@ export default {
   name: "msite",
   data() {
     return {
-      isSuccLocation : false
+      isSuccLocation : false,
+      modelist : null,
     };
   },
   components: {
@@ -49,15 +64,27 @@ export default {
   },
   watch: {
     latitude(){
+      const _this = this;
       this.isSuccLocation = true;
-      getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
+      getMsiteModeList(this.latitude , this.longitude).then(res => {
+        this.modelist = res[0].entries;
+        setTimeout(function(){
+          _this.startSwiper();
+        } ,100) 
+      });
     }
   },
   methods: {
-    
+    getElmImageUrl,
+    startSwiper() {
+       var swiper = new Swiper('.swiper-container', {
+          loop:true,
+          pagination: '.swiper-pagination'
+        })
+    }
   },
   mounted() {
-    // getMsiteModeList(this.latitude , this.longitude).then(res => {console.log(res)});
+     
   },
   created() {
   }
@@ -84,6 +111,28 @@ header{
     font-family: simsun;
     text-align: center;
     border-radius: .05rem;
+  }
+}
+.msite-content {
+  .swiper-container {
+    padding-bottom:.6rem;
+  }
+  .msite-modelist{
+    @include fj(flex-start ,center);
+    flex-wrap: wrap;
+    li {
+      @include fj(center ,center);
+      flex-direction: column;
+      width: 20%;
+      margin-top: .2rem;
+      img {
+        @include wh(.9rem ,.9rem);
+      }
+      span {
+        @include sc(.24rem, #666666);
+        text-align: center;
+      }
+    }
   }
 }
 </style>

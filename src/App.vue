@@ -10,6 +10,7 @@
 import { getItude , setLocalStorage } from "./config/utils.js";
 import { getCurLocation } from "@/config/getData";
 import { mapMutations } from "vuex";
+import Swiper from './plugins/swiper.min.js';
 export default {
   name: 'App',
   data() {
@@ -36,6 +37,7 @@ export default {
 
 <style>
 @import './assets/styles/reset.css';
+@import './assets/styles/swiper.min.css';
 #app {
   font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
