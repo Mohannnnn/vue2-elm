@@ -123,4 +123,4 @@ return responseJSON;
 
 3.热门搜索接口：https://h5.ele.me/restapi/shopping/v3/hot_search_words?latitude=39.904172&longitude=116.407417 
 
-4.首页频道类型接口：https://h5.ele.me/restapi/shopping/openapi/entries?latitude=39.904172&longitude=116.407417&templates[]=main_template&templates[]=favourable_template&templates[]=svip_template&terminal=h5
+4.首页频道类型列表接口：https://h5.ele.me/restapi/shopping/openapi/entries?latitude=39.904172&longitude=116.407417&templates[]=main_template&templates[]=favourable_template&templates[]=svip_template&terminal=h5
