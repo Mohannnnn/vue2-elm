@@ -95,8 +95,6 @@ npm run build --report
 
 1.由于使用的是官方的脚手架，官方使用的是css-loader，如果你想使用scss、sass、less语法等，则需要安装相应的loader。此处我用的是scss语法。
 
-2.使用swiper需要在.babelrc里面的plugins添加"transform-es2015-modules-commonjs",当然这个的`npm install babel-plugin-transform-es2015-modules-commonjs`
-
 ``` bash
 npm install XXXX-loader -D
 
@@ -113,6 +111,7 @@ const response = await fetch(url , options);
 const responseJSON = await response.json();
 return responseJSON;
 ```
+5.使用swiper需要在.babelrc里面的plugins添加"transform-es2015-modules-commonjs",当然这个需要`npm install babel-plugin-transform-es2015-modules-commonjs`
 
 ## 开发相关官方接口（如果是在localhost下使用的话,一定要配置代理才行,切记！）
 
