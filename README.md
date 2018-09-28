@@ -124,3 +124,9 @@ return responseJSON;
 3.热门搜索接口：https://h5.ele.me/restapi/shopping/v3/hot_search_words?latitude=39.904172&longitude=116.407417 
 
 4.首页频道类型列表接口：https://h5.ele.me/restapi/shopping/openapi/entries?latitude=39.904172&longitude=116.407417&templates[]=main_template&templates[]=favourable_template&templates[]=svip_template&terminal=h5
+
+5.首页banner接口：https://h5.ele.me/restapi/shopping/v2/banners?consumer=1&type=1&latitude=40.041426&longitude=116.276241
+
+6.首页推荐商家的筛选接口：https://h5.ele.me/pizza/shopping/restaurants/batch_filter?latitude=40.041426&longitude=116.276241&terminal=h5
+
+7.首页推荐商家的接口：https://h5.ele.me/restapi/shopping/v3/restaurants?latitude=40.041426&longitude=116.276241&offset=0&limit=8&extras[]=activities&extras[]=tags&extra_filters=home&rank_id=&terminal=h5
