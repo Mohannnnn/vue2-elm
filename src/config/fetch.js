@@ -1,8 +1,8 @@
 /*
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:16:31 
- * @Last Modified by:   wuhan 
- * @Last Modified time: 2018-09-19 21:16:31 
+ * @Last Modified by: wuhan
+ * @Last Modified time: 2018-09-28 19:31:48
  */
 
  // 封装fetch请求方法
@@ -19,7 +19,7 @@ export default async({url = '' , type = 'GET' , data = {}} = {}) => {
     }else if (type == 'POST') {
         data = JSON.stringify(data);
     }
-    if(!window.fetch) {
+    if(window.fetch) {
         let options = {
             method : type,
             credentials : 'include', //携带cookie
