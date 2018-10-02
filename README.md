@@ -5,6 +5,9 @@
 ## github地址
 [https://github.com/Mohannnnn/vue2-elm](https://github.com/Mohannnnn/vue2-elm)
 
+## 后端github地址
+[https://github.com/Mohannnnn/vue2-elm-koa2](https://github.com/Mohannnnn/vue2-elm-koa2)
+
 ## 技术栈
 
 `webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex`
