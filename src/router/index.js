@@ -14,7 +14,7 @@ const  Order  =  r => require.ensure([], () => r(require('@/pages/order/index'))
 const  Profile  =  r => require.ensure([], () => r(require('@/pages/profile/index')), 'profile');
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',

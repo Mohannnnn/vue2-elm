@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-28 21:19:00
+ * @Last Modified time: 2018-09-30 11:13:37
  */
 <template>
   <div class="msite">
@@ -16,7 +16,7 @@
         <span>搜索饿了么商家、商品名称</span>
       </router-link>
     </header>
-    <section class="msite-content" v-if="isSuccLocation">
+    <section class="msite-content" v-if="isSuccGetData">
       <div class="swiper-container-modelist" v-if="!!modeList">
           <div class="swiper-wrapper">
             <ul class="swiper-slide content-modelist">
@@ -72,7 +72,7 @@ export default {
   name: "msite",
   data() {
     return {
-      isSuccLocation  : false,
+      isSuccGetData   : false,  //是否成功获取到数据
       modeList        : null,   //模式列表数据
       activityList    : null,   //活动优惠列表数据
       bannerList      : null,   //banner
@@ -86,11 +86,8 @@ export default {
     ...mapState(['latitude','longitude','curLocalName'])
   },
   watch: {
-    isSuccLocation(){
-      this.contentInit();
-    },
     latitude(){
-      this.isSuccLocation = true;
+      this.contentInit();
     }
   },
   methods: {
@@ -98,6 +95,7 @@ export default {
     contentInit(){
       // 获取modeList
       getMsiteModeList(this.latitude , this.longitude).then(res => {
+        this.isSuccGetData = true;
         this.modeList = res[0].entries;
         this.activityList = (res[1].entries)[0];
         setTimeout(function(){
@@ -109,6 +107,7 @@ export default {
       });
       //获取banner
       getMsiteBannerList(this.latitude , this.longitude).then(res => {
+        this.isSuccGetData = true;
         this.bannerList = res;
         setTimeout(function(){
           new Swiper('.swiper-container-banner', {
@@ -119,13 +118,14 @@ export default {
       });
       //获取bar
       getMsiteBarList(this.latitude , this.longitude).then(res => {
+        this.isSuccGetData = true;
         console.log(res);
       })
     }
   },
   mounted() {
      if(this.latitude != '') {
-       this.isSuccLocation = true;
+        this.contentInit();
      }
   },
   created() {
@@ -156,6 +156,7 @@ header{
   }
 }
 .msite-content {
+  overflow: hidden;
   .swiper-container-modelist {
     position: relative;
     padding-bottom:.6rem;
