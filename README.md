@@ -2,7 +2,7 @@
 > 模仿elm的H5商城。在写之前在github上也找过一些项目，恰巧看到了这篇[vue2-elm](https://github.com/bailicangdu/vue2-elm),于是开始下定决心做这个东西。
 > 所有的图标icon均来自[http://www.iconfont.cn/search/index](http://www.iconfont.cn/search/index)
 
-## github地址
+## 前端github地址
 [https://github.com/Mohannnnn/vue2-elm](https://github.com/Mohannnnn/vue2-elm)
 
 ## 后端github地址
