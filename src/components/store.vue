@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-08 10:00:35 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-08 10:31:59
+ * @Last Modified time: 2018-10-09 20:30:42
  */
 <template>
     <div class="store">
@@ -11,7 +11,7 @@
           <section class="store-bar">
             <li class="bar" @click="setBarActions()">{{ filterSortName }}<img src="../assets/svg/icon-down.svg" alt="向下"></li>
             <li class="bar" v-for="item in outside_sort_filter" :key="item.value"  :class="{selected : selectedKeyValue == item.key+item.value}" @click="setBarActions(item)">{{ item.name }}</li>
-            <li class="bar" @click="setFilterActions">筛选<img src="../assets/svg/icon-filter.svg" alt="筛选"></li>
+            <li class="bar" @click="setFilterActions()" :class="{selected : filterObj != ''}">筛选<img src="../assets/svg/icon-filter.svg" alt="筛选"></li>
           </section>
           <section class="filter-sort" v-if="showSort">
               <li v-for="item in inside_sort_filter" :key="item.value" :class="{selected : selectedKeyValue == item.key+item.value} " @click="setBarActions(item , 'inside')">{{ item.name }}<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAkFJREFUSA3tlbtrVFEQxr/JusEkdqYR0mU3EGyECCKCIEIghIgSfBSCCkbwWqTQykoQ41+QbHaRRC0MSDCgjeADO0ERQRBB10YsU/gC89jd8ZuNez17H7gmN2BxT7Fnzpw587vzzbl3gXSkCqQKJKSAJJQnlKb3huawjDkCZj94KIiIukGbAs5P636t4h5J2w1GyHz5ghx1wW3uIgm7b0pPaQ2PHOg3tGEimDsxsKpKbkonqoqbqmivgwRLksFI+by8DoITkXqgqJ1fq7hN4GgDwMQVajxa9uR+w+fOW9zFeuz+ou74UoEl3+2fFyilPPs+BmpxkVLnpnVvflLHTT4/WYSRL+mu1QpecOsPlAseukTorYgjviuU2F4DWcFzytbNqCfSjtPlMfnsn/htsJ+HoLjDS9Tl7ongOuW97Pqi7FDFslzvlUFtHNRVvOkr6Im15dpvb0Ev8sEWglCWWmoFallCFeeLuqdWxVNW0+nCaM9JB8bxE9cIHAvsWaL5kx6OXxGpBfei1iGwBeUmdYTdXSA84x6ijCv+q9K0gcdbuzH89hib1OIISW3n+JV5wMkL5oiBviT0yL9ALW8k2DY+elLidNXsuEEF3mW7METoj7iYOH+k1G4wb+8MKz3j+uq24JNksS/qxodiIxyxFTdie/pxjk/3sLG2mZUu8sszuF5oPYebMM7eeVe3LS3iGS/bAKHfeasPsBWv4uJb8f+1YktiPezIYth6mhEc3ii0lQdriuGfQbbJkS5SBf5HBX4Bvl6o9YDxgOsAAAAASUVORK5CYII=" alt=""></li>
@@ -19,25 +19,25 @@
           <section class="filter-attr" v-if="showFilter">
             <div class="attr-container">
               <h2>商家服务 (可多选)</h2>
-              <ul>
-                <li v-if="delivery_mode"><img :src="getElmImageUrl(delivery_mode.icon_hash)" alt="">{{delivery_mode.text}}</li>
-                <li v-for="item in supports" :key="item.id"><img :src="getElmImageUrl(item.icon_hash)" alt="">{{ item.name }}</li>
+              <ul> 
+                <li ref="liList" v-if="delivery_mode" @click="setFilterActions(delivery_mode ,'delivery_mode',$event)" ><img :src="getElmImageUrl(delivery_mode.icon_hash)" alt="">{{delivery_mode.text}}</li>
+                <li v-for="item in supports" :key="item.id" @click="setFilterActions(item , 'support_ids' , $event)" ref="liLists"><img :src="getElmImageUrl(item.icon_hash)" alt="">{{ item.name }}</li>
               </ul>
             </div>
             <div class="attr-container">
               <h2>优惠活动 (单选)</h2>
               <ul>
-                <li v-for="item in activity_types" :key="item.id">{{ item.name }}</li>
+                <li v-for="item in activity_types" :key="item.id" :class="{selected : selectedActivityId == item.id}" @click="setFilterActions(item ,'activity_types')">{{ item.name }}</li>
               </ul>
             </div>
             <div class="attr-container">
               <h2>人均消费</h2>
               <ul>
-                <li v-for="item in average_costs" :key="item.id">{{ item.description }}</li>
+                <li v-for="item in average_costs" :key="item.id" :class="{selected : selectedAverageId == item.id}" @click="setFilterActions(item ,'average_costs')">{{ item.description }}</li>
               </ul>
             </div>
             <div class="btn">
-              <span>清空</span>
+              <span @click="emptyFilterObj">清空</span>
               <span>确定</span>
             </div>
           </section>
@@ -63,7 +63,9 @@ export default {
       showFilter : false , //筛选
       filterSortName: '综合排序', //排序名
       selectedKeyValue: 'order_by0', //排序id
-      filterObj: null,//筛选对象
+      selectedActivityId: null,
+      selectedAverageId : null,
+      filterObj: [],//筛选对象
       isSuccGetData : false,
       inside_sort_filter: null,
       outside_sort_filter : null,
@@ -82,10 +84,52 @@ export default {
   watch: {},
   methods: {
     getElmImageUrl,
-    setFilterActions() {
+    emptyFilterObj(){
+      this.filterObj = [];
+      this.selectedActivityId = null;
+      this.selectedAverageId = null;
+      this.$refs.liList.className = '';
+      this.$refs.liLists.forEach(item => {
+        item.className = '';
+      }) 
+    },
+    setFilterActions(value ,type ,event) {
       this.setScrollTop();
-      this.showFilter = !this.showFilter;
-      this.showSort = false;
+      const _this = this;
+      if(type) {
+        if(type == 'delivery_mode' || type == 'support_ids'){
+          if(event.currentTarget.className == '') {
+            event.currentTarget.className += 'selected';
+            this.filterObj.push({
+              key : type,
+              id  : value.id
+            })
+          }else {
+            event.currentTarget.className = '';
+            this.filterObj.forEach((item , index ) =>{
+              if(item.key == type && item.id == value.id) _this.filterObj.splice(index , 1);
+            })
+          }
+        }else if(type == 'activity_types'){
+          this.filterObj.forEach((item , index ) =>{
+              if(item.key == type) _this.filterObj.splice(index , 1);
+          })
+          if(this.selectedActivityId != value.id) {
+            this.selectedActivityId = value.id;
+            this.filterObj.push({
+                key : type,
+                id  : value.id
+            })
+          }else {
+            this.selectedActivityId = null;
+          }
+        }else if(type == 'average_costs'){
+          this.selectedAverageId = this.selectedAverageId == value.id ? null : value.id;
+        }
+      }else {
+        this.showFilter = !this.showFilter;
+        this.showSort = false;
+      }
     },
     setBarActions(item , side) {
       this.setScrollTop();
@@ -97,11 +141,11 @@ export default {
         }
         this.showSort = false;
         this.selectedKeyValue = item.key+item.value;
-        console.log(item)
+        // console.log(item)
       }else {
-        this.showFilter = false;
         this.showSort = !this.showSort;
       }
+      this.showFilter = false;
     },
     setScrollTop(){ 
       const top = document.getElementsByClassName('store-barcontainer')[0].offsetTop;
@@ -119,6 +163,7 @@ export default {
       //获取bar
       getMsiteBarList(this.latitude , this.longitude).then(res => {
         this.isSuccGetData = true;
+        console.log(res)
         this.activity_types = res.bar.activity_types;
         this.average_costs = res.bar.average_costs;
         this.delivery_mode = res.bar.delivery_mode;
