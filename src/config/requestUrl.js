@@ -13,5 +13,6 @@
     msiteModeList   : '/restapi/shopping/openapi/entries?templates[]=main_template&templates[]=favourable_template&templates[]=svip_template',       //首页外卖类型列表接口
     msiteBannerList : '/restapi/shopping/v2/banners',            //首页banner
     msiteBarList    : '/pizza/shopping/restaurants/batch_filter',//首页bar接口
+    restaurantsList : '/restapi/shopping/v3/restaurants',       //商家接口
 }
 export  default requestUrl;

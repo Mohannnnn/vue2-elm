@@ -69,11 +69,18 @@ export const getMsiteBarList = (latitude , longitude) => fetch({
 })
 
 //首页商家接口
-export const getRestaurantsList = (latitude , longitude) => fetch({
-    url : requestUrl.barList,
-    data : {
+export const getRestaurantsList = (latitude , longitude , datas = {}) => fetch({
+    url : requestUrl.restaurantsList,
+    data : Object.assign({
         terminal      : 'h5',
         latitude      : latitude,
-        longitude     : longitude 
-    }
+        longitude     : longitude,
+        offset        : 0,
+        limit         : 8,
+        'extras[]'    : 'activities',
+        'extras[]'    : 'tags',
+        extra_filters : 'home',
+        order_by      :  0 ,
+        rank_id       : ''
+    },datas)
 })
