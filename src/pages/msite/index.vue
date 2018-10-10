@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-07 19:48:44
+ * @Last Modified time: 2018-10-10 20:04:15
  */
 <template>
   <div class="msite">
@@ -65,7 +65,7 @@
 <script>
 import footerV from "@/components/footer";
 import loadingV from "@/components/loading";
-import storeV from  '@/components/store';
+import storeV from  '@/components/storepack';
 import {  getLocalStorage , getElmImageUrl } from "@/config/utils";
 import {  getMsiteModeList , getMsiteBannerList , getMsiteBarList } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
