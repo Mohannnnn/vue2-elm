@@ -2,11 +2,12 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-10 19:57:53 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-10 23:27:38
+ * @Last Modified time: 2018-10-11 00:20:31
  */
 <template>
     <section class="store-container">
-        <section class="store-list" v-if="storeMsg" v-for="(item , index) in storeMsg" :key="index">   
+        <section class="tip" v-if="storeMsg && storeMsg.length == 0">主人~您的条件太苛刻,换个条件吧~~</section> 
+        <section class="store-list" v-if="!!storeMsg" v-for="(item , index) in storeMsg" :key="index">
             <img class="logo" :src="getElmImageUrl(item.restaurant.image_path)" alt="">
             <div class="msg">
                 <div class="shopname">{{ item.restaurant.name }}</div>
@@ -32,9 +33,10 @@
                         <span>{{ item.restaurant.recommend.reason }}</span>
                     </div>
                 </div>
-                <div class="box">
-                    <div class="activities" v-for="(value ,index) in item.restaurant.activities" :key="index">
-                        <span>{{ value.description }}</span><span>{{ value.description }}</span>
+                <div class="activebox">
+                    <div class="activities" v-for="(value ,index) in item.restaurant.activities" :key="index" v-if="index<3">
+                        <span class="iconname">{{ value.icon_name }}</span>
+                        <span class="description">{{ value.description }}</span>
                     </div>
                 </div>
             </div>
@@ -62,7 +64,7 @@ export default {
         getElmImageUrl
     },
     mounted() {
-        console.log(this.storeMsg);
+        // console.log(this.storeMsg);
     }
 }
 
@@ -72,6 +74,9 @@ export default {
 .store-container {
     position: relative;
     min-height: 2rem;
+    .tip{
+        padding-top: .5rem;
+    }
     .store-list {
         padding: 0.2rem 0.24rem;
         @include fj(flex-start, flex-start);
@@ -154,6 +159,31 @@ export default {
                 padding-right: .1rem;
                 padding-left: .1rem;
             }
+        } 
+        
+    }
+    .activebox {
+        @include fj(center ,flex-start);
+        flex-direction: column;
+        padding: .05rem 0;
+        .activities {
+            @include fj(flex-start ,center);
+            padding: .1rem 0;
+            .iconname {
+                color: #fff;
+                padding: 0 0.05rem;
+                margin-right: .1rem;
+                background-color: rgb(112, 188, 70);
+            }
+            .description {
+                text-align: left;
+            }
+        }
+        .activities:nth-child(2) .iconname{
+            background-color: rgb(240, 115, 115);
+        }
+        .activities:nth-child(3) .iconname{
+            background-color: rgb(241, 136, 79);
         }
     }
 }

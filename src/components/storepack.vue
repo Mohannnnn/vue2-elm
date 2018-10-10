@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-08 10:00:35 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-10 23:30:12
+ * @Last Modified time: 2018-10-11 00:29:33
  */
 <template>
     <div class="store">
@@ -16,7 +16,7 @@
           <section class="filter-sort" v-if="showSort">
               <li v-for="item in inside_sort_filter" :key="item.value" :class="{selected : selectedKeyValue == item.key+ '&'+item.value} " @click="setBarActions(item , 'inside')">{{ item.name }}<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAkFJREFUSA3tlbtrVFEQxr/JusEkdqYR0mU3EGyECCKCIEIghIgSfBSCCkbwWqTQykoQ41+QbHaRRC0MSDCgjeADO0ERQRBB10YsU/gC89jd8ZuNez17H7gmN2BxT7Fnzpw587vzzbl3gXSkCqQKJKSAJJQnlKb3huawjDkCZj94KIiIukGbAs5P636t4h5J2w1GyHz5ghx1wW3uIgm7b0pPaQ2PHOg3tGEimDsxsKpKbkonqoqbqmivgwRLksFI+by8DoITkXqgqJ1fq7hN4GgDwMQVajxa9uR+w+fOW9zFeuz+ou74UoEl3+2fFyilPPs+BmpxkVLnpnVvflLHTT4/WYSRL+mu1QpecOsPlAseukTorYgjviuU2F4DWcFzytbNqCfSjtPlMfnsn/htsJ+HoLjDS9Tl7ongOuW97Pqi7FDFslzvlUFtHNRVvOkr6Im15dpvb0Ev8sEWglCWWmoFallCFeeLuqdWxVNW0+nCaM9JB8bxE9cIHAvsWaL5kx6OXxGpBfei1iGwBeUmdYTdXSA84x6ijCv+q9K0gcdbuzH89hib1OIISW3n+JV5wMkL5oiBviT0yL9ALW8k2DY+elLidNXsuEEF3mW7METoj7iYOH+k1G4wb+8MKz3j+uq24JNksS/qxodiIxyxFTdie/pxjk/3sLG2mZUu8sszuF5oPYebMM7eeVe3LS3iGS/bAKHfeasPsBWv4uJb8f+1YktiPezIYth6mhEc3ii0lQdriuGfQbbJkS5SBf5HBX4Bvl6o9YDxgOsAAAAASUVORK5CYII=" alt=""></li>
           </section>
-          <section class="filter-attr" v-if="showFilter">
+          <section class="filter-attr" v-show="showFilter">
             <div class="attr-container">
               <h2>商家服务 (可多选)</h2>
               <ul> 
@@ -142,6 +142,7 @@ export default {
         this.getStoreList();
       }else {
         this.showSort = !this.showSort;
+        this.showFilter = false;
       }
     },
     setScrollTop(){ 
@@ -159,7 +160,6 @@ export default {
         datas[item.key + '[]'] = item.id;
       })
       getRestaurantsList(this.latitude , this.longitude , datas).then(res => {
-        console.log(res.items)
         this.storeMsg = res.items;
       })
       this.showFilter = false;
