@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:16:14 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-28 20:34:09
+ * @Last Modified time: 2018-10-11 10:52:04
  */
 
 import fetch from './fetch';
@@ -71,16 +71,15 @@ export const getMsiteBarList = (latitude , longitude) => fetch({
 //首页商家接口
 export const getRestaurantsList = (latitude , longitude , datas = {}) => fetch({
     url : requestUrl.restaurantsList,
-    data : Object.assign({
-        terminal      : 'h5',
-        latitude      : latitude,
-        longitude     : longitude,
-        offset        : 0,
-        limit         : 8,
-        'extras[]'    : 'activities',
-        'extras[]'    : 'tags',
-        extra_filters : 'home',
-        order_by      :  0 ,
-        rank_id       : ''
-    },datas)
+    data :  Object.assign({
+            terminal      : 'h5',
+            latitude      : latitude,
+            longitude     : longitude,
+            offset        : 0,
+            limit         : 8,
+            'extras[]'    : 'activities',
+            // 'extras[]'    : 'tags',
+            extra_filters : 'home',
+            rank_id       : ''
+        } ,datas)
 })
