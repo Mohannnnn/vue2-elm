@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-10 19:57:53 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-11 09:57:33
+ * @Last Modified time: 2018-10-11 21:13:06
  */
 <template>
     <section class="store-container">
@@ -36,7 +36,7 @@
                 <div class="activebox">
                     <div class="activities" v-for="(value ,index) in item.restaurant.activities" :key="index" v-if="index<3">
                         <span class="iconname">{{ value.icon_name }}</span>
-                        <span class="description">{{ value.description }}</span>
+                        <span class="description">{{ value.description.length > 20 ?  `${value.description.slice(0,25)}...` : value.description }}</span>
                     </div>
                 </div>
             </div>
