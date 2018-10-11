@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:07:57 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-10 20:04:15
+ * @Last Modified time: 2018-10-11 20:52:55
  */
 <template>
   <div class="msite">
@@ -55,7 +55,7 @@
             </div>
           </div>
       </div>
-      <store-v></store-v>
+      <storepack-v></storepack-v>
     </section>
     <loading-v v-else></loading-v>
     <footer-v></footer-v>
@@ -65,7 +65,7 @@
 <script>
 import footerV from "@/components/footer";
 import loadingV from "@/components/loading";
-import storeV from  '@/components/storepack';
+import storepackV from  '@/components/storePack';
 import {  getLocalStorage , getElmImageUrl } from "@/config/utils";
 import {  getMsiteModeList , getMsiteBannerList , getMsiteBarList } from "@/config/getData";
 import { mapState, mapMutations } from "vuex";
@@ -83,7 +83,7 @@ export default {
   components: {
     footerV,
     loadingV,
-    storeV
+    storepackV
   },
   computed: {
     ...mapState(['latitude','longitude','curLocalName'])
@@ -125,6 +125,7 @@ export default {
      if(this.latitude != '') {
         this.contentInit();
      }
+     console.log(this.$el)
   },
   created() {
   }
