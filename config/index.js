@@ -30,7 +30,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // 192.168.199.113 can be overwritten by process.env.HOST
+    host: 'localhost', // 10.222.38.34  192.168.199.113 can be overwritten by process.env.HOST
     port: 9000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
@@ -68,7 +68,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
