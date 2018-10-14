@@ -1,5 +1,5 @@
 ## vue2-elm
-> 模仿elm的H5商城。在写之前在github上也找过一些项目，恰巧看到了这篇[vue2-elm](https://github.com/bailicangdu/vue2-elm),于是开始下定决心做这个东西。
+> 模仿elm的H5商城。在写之前在github上也找过一些项目，恰巧看到了这篇[vue2-elm](https://github.com/bailicangdu/vue2-elm),于是开始下定决心做这个东西。此项目模仿官网UI所开发，完全是娱乐学习，如需定购外卖，请到官网下单。
 > 所有的图标icon均来自[http://www.iconfont.cn/search/index](http://www.iconfont.cn/search/index)
 
 ## 前端github地址
