@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-27 12:51:00 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-27 13:05:25
+ * @Last Modified time: 2018-10-16 22:46:08
  */
 <template>
    <section class="loading">
@@ -23,18 +23,35 @@
             </g>
             <use xlink:href="#circle" class="use"></use>
         </svg>
+        <span class="loadingMsg">{{loadingStatus.loading}}</span>
    </section>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      loadingStatus : {
+          loading : '正在加载~喵~',
+          loaded  : '加载完成'
+      }
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>
 @import '@/assets/styles/mixin.scss';
 .loading {
     @include center;
-    @include wh(.6rem ,.6rem);
+    svg{
+      @include wh(.6rem ,.6rem);
+    }
+    .loadingMsg{
+      @include sc(.26rem,#666);
+      line-height: .6rem;
+      vertical-align: top;
+      margin-left: .05rem;
+    }
 }
 .g-circles {
   -webkit-transform: scale(0.9) translate(7px, 7px);

@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-08 10:00:35 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-11 00:29:33
+ * @Last Modified time: 2018-10-16 23:42:26
  */
 <template>
     <div class="store">
@@ -43,6 +43,7 @@
           </section>
         </section>
         <store-v :store-msg="storeMsg"></store-v>
+        <section class="loadingContainer" v-if="!isLoaded"><loading-v></loading-v></section>
     </div>
 </template>
 
@@ -69,7 +70,9 @@ export default {
       average_costs: null,
       delivery_mode: null,
       supports: null,
-      storeMsg: null //商店信息
+      storeMsg: [], //商店信息,
+      offset : 0,  //商店数量
+      isLoaded : false
     };
   },
   components: {
@@ -79,7 +82,11 @@ export default {
   computed: {
     ...mapState(['latitude','longitude'])
   },
-  watch: {},
+  watch: {
+    storeMsg(){
+      this.isLoaded = true
+    }
+  },
   methods: {
     getElmImageUrl,
     emptyFilterObj(){
@@ -154,15 +161,45 @@ export default {
       }
     },
     getStoreList(){
-      let datas = {};
+      let datas = {offset:this.offset};
       datas[this.selectedKeyValue.split('&')[0]] = this.selectedKeyValue.split('&')[1];
       this.filterObj.forEach(item => {
         datas[item.key + '[]'] = item.id;
       })
       getRestaurantsList(this.latitude , this.longitude , datas).then(res => {
-        this.storeMsg = res.items;
+        this.storeMsg = this.storeMsg.concat(res.items);
+        this.offset+=8;
       })
+      this.isLoaded = false;
       this.showFilter = false;
+    },
+    getMoreStoreList(){
+      const that = this;
+      const throttle = function (callback , delay ,time) {
+        let startTime = new Date();
+        let timer = null;
+        return function() {
+          const context = this;
+          const currTime = new Date();
+
+          clearTimeout(timer);
+          if(currTime.getTime() - startTime.getTime() > time) {
+            callback.call(context);
+            startTime = currTime;
+          } else {
+            timer = setTimeout(callback , delay);
+          }
+        }
+      }
+      function callback() {
+          const clientH = document.documentElement.clientHeight;
+          const scrollH = document.documentElement.scrollTop;
+          const allH    = document.body.clientHeight;
+          if(allH - clientH - scrollH < 10 && that.offset < 81) {
+            that.getStoreList();
+          }
+      }
+      window.onscroll = throttle(callback , 1000 , 1000);
     }
   },
   mounted() {
@@ -177,12 +214,14 @@ export default {
         this.outside_sort_filter = res.outside.outside_sort_filter;
       })
       this.getStoreList();
+      this.getMoreStoreList();
   }
 };
 </script>
 <style lang='scss' scoped>
 @import "@/assets/styles/mixin.scss";
 .store {
+  padding-bottom: .6rem;
   .store-head {
     padding: 0.14rem 0.24rem;
     @include sc(0.3rem, #000000);
@@ -287,6 +326,10 @@ export default {
         background-color: #00d762;
       }
     }
+  }
+  .loadingContainer{
+    position: relative;
+    height: 1rem;
   }
 }
 </style>
