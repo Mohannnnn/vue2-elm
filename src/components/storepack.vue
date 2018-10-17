@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-08 10:00:35 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-16 23:42:26
+ * @Last Modified time: 2018-10-17 22:58:30
  */
 <template>
     <div class="store">
@@ -160,7 +160,11 @@ export default {
         document.body.scrollTop = top;
       }
     },
-    getStoreList(){
+    getStoreList(type){
+      if(type != 'more') {
+        this.offset = 0;
+        this.storeMsg = [];
+      }
       let datas = {offset:this.offset};
       datas[this.selectedKeyValue.split('&')[0]] = this.selectedKeyValue.split('&')[1];
       this.filterObj.forEach(item => {
@@ -195,11 +199,12 @@ export default {
           const clientH = document.documentElement.clientHeight;
           const scrollH = document.documentElement.scrollTop;
           const allH    = document.body.clientHeight;
-          if(allH - clientH - scrollH < 10 && that.offset < 81) {
-            that.getStoreList();
+          if(allH - clientH - scrollH < 100 && that.offset < 81 && that.storeMsg.length%8 == 0) {
+            that.getStoreList('more');
+            console.log('more');
           }
       }
-      window.onscroll = throttle(callback , 1000 , 1000);
+      window.ontouchmove = throttle(callback , 500 , 1000);
     }
   },
   mounted() {
