@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-08 10:00:35 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-17 22:58:30
+ * @Last Modified time: 2018-10-17 23:31:57
  */
 <template>
     <div class="store">
@@ -197,14 +197,14 @@ export default {
       }
       function callback() {
           const clientH = document.documentElement.clientHeight;
-          const scrollH = document.documentElement.scrollTop;
+          const scrollH = document.documentElement.scrollTop || document.body.scrollTop;
           const allH    = document.body.clientHeight;
           if(allH - clientH - scrollH < 100 && that.offset < 81 && that.storeMsg.length%8 == 0) {
             that.getStoreList('more');
             console.log('more');
           }
       }
-      window.ontouchmove = throttle(callback , 500 , 1000);
+      document.ontouchmove = throttle(callback , 500 , 1000);
     }
   },
   mounted() {
