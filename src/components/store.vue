@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-10 19:57:53 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-12 09:23:42
+ * @Last Modified time: 2018-10-17 23:05:14
  */
 <template>
     <section class="store-container">
@@ -164,6 +164,7 @@ export default {
     }
     .activebox {
         @include fj(center ,flex-start);
+        @include sc(.26rem,#2c3e50);
         flex-direction: column;
         padding: .05rem 0;
         .activities {
