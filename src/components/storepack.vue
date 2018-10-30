@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-10-08 10:00:35 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-10-17 23:31:57
+ * @Last Modified time: 2018-10-30 20:02:49
  */
 <template>
     <div class="store">
@@ -42,7 +42,7 @@
             </div>
           </section>
         </section>
-        <store-v :store-msg="storeMsg"></store-v>
+        <storelist-v :store-msg="storeMsg"></storelist-v>
         <section class="loadingContainer" v-if="!isLoaded"><loading-v></loading-v></section>
     </div>
 </template>
@@ -50,7 +50,7 @@
 <script>
 import { mapState } from "vuex";
 import loadingV from "@/components/loading";
-import storeV from "@/components/store";
+import storelistV from "@/components/storeList";
 import { getElmImageUrl } from "@/config/utils";
 import { getMsiteBarList , getRestaurantsList } from "@/config/getData";
 export default {
@@ -77,7 +77,7 @@ export default {
   },
   components: {
     loadingV,
-    storeV
+    storelistV
   },
   computed: {
     ...mapState(['latitude','longitude'])
