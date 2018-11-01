@@ -89,6 +89,7 @@ npm run build --report
 - [ ] order       -- 订单
 - [ ] search      -- 搜索
 - [ ] profile     -- 个人中心
+- [ ] stop        -- 商家页
 
 ## 后端服务
 
