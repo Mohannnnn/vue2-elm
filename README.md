@@ -87,7 +87,7 @@ npm run build --report
 
 - [x] msite       -- 首页
 - [ ] order       -- 订单
-- [ ] search      -- 搜索
+- [x] search      -- 搜索
 - [ ] profile     -- 个人中心
 - [ ] shop        -- 商家页
 
