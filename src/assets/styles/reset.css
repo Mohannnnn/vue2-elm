@@ -131,3 +131,9 @@ a:link,a:active,a:visited,a:hover {
 .dn{
     display: none;
 }
+@media screen and (min-width: 750px) {
+    html,body{
+        width: 750px;
+        margin: 0 auto;
+    }
+}
