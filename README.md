@@ -19,13 +19,13 @@
 
 ``` bash
 # install dependencies
-npm install | cnpm install
+npm install || cnpm install
 
 # serve with hot reload at localhost:8080
-npm run dev | cnpm run dev
+npm run dev || cnpm run dev
 
 # build for production with minification
-npm run build | cnpm run build
+npm run build || cnpm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
