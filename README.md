@@ -54,10 +54,11 @@ npm run build --report
  |      mutations.js                
  |-plugins                          #第三方插件、js
  |-dist                             #build打包后生成的文件
- |      static
- |              css
- |              js
- |      index.html
+ |      elm                         #项目名
+ |              static
+ |                  css
+ |                  js
+ |              index.html
  |-node_modules                     #依赖模块
  |-src                              #项目主目录
  |      assets                      #静态文件目录
