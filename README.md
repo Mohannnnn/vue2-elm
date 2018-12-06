@@ -13,7 +13,7 @@
 
 ## 技术栈
 
-`webpack3` + `Vue2` + `Vuex` + `vue-router` + `fetch` + `ES6/7` + `flex` + `scss`
+`webpack3` + `Vue2` + `Vuex` + `Vue-router` + `fetch` + `ES6/7` + `flex` + `scss`
 
 ## 开始步骤
 
