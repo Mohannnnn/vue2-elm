@@ -89,7 +89,7 @@ npm run build --report
 ```
 ## 功能完成情况
 
-- [x] msite       -- 首页
+- [x] msite       -- 首页(完成)
 - [ ] order       -- 订单
 - [ ] search      -- 搜索
 - [ ] profile     -- 个人中心
