@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-21 16:49:56 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-24 22:08:17
+ * @Last Modified time: 2018-12-10 22:39:32
  */
 <template>
     <section class="search-head">
@@ -26,7 +26,7 @@ export default {
   computed: {},
   watch: {
       searchMsg(){
-        this.$emit("listenShowContainer" , this.searchMsg)
+        this.$emit("listenShowContainer" , this.searchMsg);
       }
   },
   methods: {
