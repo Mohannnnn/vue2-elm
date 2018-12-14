@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:10:10 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-12-11 19:38:55
+ * @Last Modified time: 2018-12-14 19:57:47
  */
 const actions = {
     //设置经纬度
