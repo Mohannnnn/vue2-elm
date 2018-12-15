@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:10:10 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-12-14 19:57:47
+ * @Last Modified time: 2018-12-15 22:18:14
  */
 const actions = {
     //设置经纬度
@@ -10,6 +10,7 @@ const actions = {
         commit('SET_ITUDE' , value);
     },
     //设置地点名
+    
 
 }
 
