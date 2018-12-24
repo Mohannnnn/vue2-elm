@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-12-17 18:02:44 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-12-22 21:34:18
+ * @Last Modified time: 2018-12-24 19:20:21
  */
 const actions = {
     //设置经纬度
@@ -12,4 +12,5 @@ const actions = {
     //设置地点名
     
 }
+
 export default actions;
