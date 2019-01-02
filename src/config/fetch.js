@@ -2,7 +2,7 @@
  * @Author: wuhan  [https://github.com/Mohannnnn] 
  * @Date: 2018-09-19 21:16:31 
  * @Last Modified by: wuhan
- * @Last Modified time: 2018-09-28 21:31:43
+ * @Last Modified time: 2019-01-02 10:45:16
  */
 
  // 封装fetch请求方法
@@ -26,7 +26,7 @@ export default async({url = '' , type = 'GET' , data = {}} = {}) => {
             mode : 'cors', 
             cache : 'force-cache',
             headers : {
-                "Content-type" : "application/json",
+                "Content-Type" : "application/json",
                 "Accept" : "application/json"
             }
         };
