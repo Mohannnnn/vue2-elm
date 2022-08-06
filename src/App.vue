@@ -38,6 +38,7 @@ export default {
 <style>
 @import './assets/styles/reset.css';
 @import './assets/styles/swiper.min.css';
+
 #app {
   font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
